@@ -1,0 +1,55 @@
+# Tend: project notes for Claude
+
+Owner: Sergej, a product owner, not a developer. He specifies, you build. Follow his global rules (plan first for big things, small steps, test before saying it works, commit after each working step, ask before spending money or publishing). Reply in the language he writes in.
+
+## What this is
+
+A portfolio demo showing he builds habitually with Claude Code. One native iOS app for plant watering and car reminders (STK inspection, insurance, tyre swap, oil service). Local data only, local notifications. Target: his iPhone 17, iOS 27.2. Minimum deployment iOS 26.
+
+Honest dating: started November 2026. Never present it as older. Public repo only with made-up sample data, nothing personal. Do not claim real users or that he writes the Swift himself.
+
+## Plan (approved)
+
+0. Mockups (done, direction A chosen).
+1. Skeleton with sample data: DONE. Today screen, SwiftData models, due-date logic with 12 tests.
+2. Add and edit items (plant and car presets), item detail, history.
+3. Local notifications with Done and Snooze actions, tested in the simulator.
+4. Polish: app icon, empty states, maybe a home-screen widget.
+5. Run on his real iPhone, README screenshots, short screen recording, public repo.
+
+Limits he knows: free Apple signing expires the on-device app every 7 days (paid program is about 100 USD a year; ask before spending). Recruiters cannot install it. No AI in v1.
+
+## Product decisions (direction A, "Garden notebook")
+
+- Today sections: Overdue, Today, Coming up (next 30 days).
+- Mark done = tap the circle (44 pt tap area) or swipe right. Snooze = swipe left, fixed one day.
+- Next due counts from the day it was marked done, not from the old due date.
+- Each item repeats on a fixed interval and reminds at one time of day (default 09:00).
+- History keeps both Done and Snoozed entries.
+- One accent colour (moss green). Terracotta for overdue, always with the word "overdue". Plants and car tasks differ by icon shape (leaf, car), not colour.
+- Screen titles in serif (New York) built on text styles; everything else uses system text styles so Dynamic Type works. At accessibility text sizes the row icon is hidden.
+- Empty states use `ContentUnavailableView`.
+- Signature detail on Today: the circle fills with a tick for a moment, then the row leaves.
+
+## Code rules
+
+- Skills in this folder and in `~/.claude/skills`: `swiftui-pro` (follow it) and `swiftui-design-skill`. Re-read `swiftui-pro` before reviewing.
+- One type per Swift file. Views extracted into their own structs, not computed `some View` properties. Button actions in methods.
+- Shared sizes and colours live in `Tend/Design/Theme.swift`. Colours are asset-catalog colour sets with light and dark values.
+- The module defaults to main-actor isolation. Plain value types used by SwiftData models are marked `nonisolated`.
+- Logic first, with a failing test (Swift Testing, `TendTests/`). Use a fixed calendar and dates in tests.
+- Debug builds seed sample data on first run (`SampleData.swift`, `#if DEBUG`).
+- Do not add third-party packages without asking.
+
+## Build and test from the command line
+
+```bash
+xcodebuild test -project Tend.xcodeproj -scheme Tend -destination 'platform=iOS Simulator,name=iPhone 17' -derivedDataPath build CODE_SIGNING_ALLOWED=NO
+```
+
+Install and screenshot without the simulator tool: `xcrun simctl install booted build/Build/Products/Debug-iphonesimulator/Tend.app`, then `xcrun simctl launch booted dev.serdz0.Tend`, then `xcrun simctl io booted screenshot <file>.png`. `xcrun simctl ui booted appearance dark` and `content_size accessibility-extra-large` check dark mode and big text. The test run shuts the simulator down; boot it again afterwards.
+
+## Before publishing
+
+- The first commit in this repo (99ab480) was made with his real email. Rewrite it to the GitHub no-reply address (355532830+serdz0@users.noreply.github.com) before any push. The local git config already uses the no-reply address.
+- Ask before creating the public GitHub repo. Pick a descriptive repo name (the folder is still called `swiftui-app`).
