@@ -13,7 +13,7 @@ Honest dating: started November 2026. Never present it as older. Public repo onl
 0. Mockups (done, direction A chosen).
 1. Skeleton with sample data: DONE. Today screen, SwiftData models, due-date logic.
 2. Add and edit items, item detail, history: DONE. Plant types, car presets, three schedule types (interval, yearly, by km), calendar tab, "My things" grouping, warm copy pass. 107 tests.
-3. Local notifications with Done and Snooze actions, tested in the simulator.
+3. Local notifications with Done and Snooze actions: DONE. One reminder per item on the due day at 10:30 by default, no repeats. `ReminderPlanner` (tested) decides what to schedule, `ReminderCenter` talks to the system, `NotificationActionHandler` answers the buttons. Oil service: Done opens the odometer sheet. 118 tests. Debug only: launch with `-testReminder Basil` to get a test reminder in 10 seconds.
 4. Polish: app icon, empty states, maybe a home-screen widget.
 5. Run on his real iPhone, README screenshots, short screen recording, public repo.
 
@@ -24,7 +24,7 @@ Limits he knows: free Apple signing expires the on-device app every 7 days (paid
 - Today sections: Overdue, Today, Coming up (next 30 days).
 - Mark done = tap the circle (44 pt tap area) or swipe right. Snooze = swipe left, fixed one day.
 - Next due counts from the day it was marked done, not from the old due date.
-- Each item repeats on a fixed interval and reminds at one time of day (default 09:00).
+- Each item repeats on a fixed interval and reminds at one time of day (default 10:30). One reminder on the due day, no repeats, no nagging. Permission is asked from a card on Today, not at launch.
 - History keeps both Done and Snoozed entries.
 - One accent colour (moss green). Terracotta for overdue, always with the word "overdue". Plants and car tasks differ by icon shape (leaf, car), not colour.
 - Exception, the Calendar tab only: five muted category colours (Sage, Dusk, Heather, Honey, Stone), each paired with its own icon (`CareCategory`). Never bright, never the only clue.

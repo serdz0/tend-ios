@@ -4,6 +4,7 @@ import SwiftUI
 struct TodayView: View {
     @Query(sort: \CareItem.dueDate) private var items: [CareItem]
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(ReminderCenter.self) private var reminders
     @State private var now = Date.now
     /// Items whose tick is showing for a moment before they leave the list.
     @State private var completing: Set<UUID> = []
@@ -19,6 +20,13 @@ struct TodayView: View {
                 TodayHeader(now: now, summary: summary)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
+
+                if reminders.status == .notDetermined {
+                    Section {
+                        ReminderPromptCard()
+                    }
+                    .listRowBackground(Theme.card)
+                }
 
                 if !sections.hasWork {
                     ContentUnavailableView(
@@ -44,6 +52,17 @@ struct TodayView: View {
             if scenePhase == .active { now = .now }
         }
         .sheet(item: $odometerRequest, content: OdometerSheet.init)
+        // A reminder's Done button for a task that repeats by distance lands here to ask for the odometer.
+        .task(id: reminders.itemToFinish) {
+            openOdometerForReminder()
+        }
+    }
+
+    private func openOdometerForReminder() {
+        guard let id = reminders.itemToFinish else { return }
+        reminders.itemToFinish = nil
+        guard let item = items.first(where: { $0.id == id }) else { return }
+        odometerRequest = OdometerRequest(item: item, purpose: .done)
     }
 
     /// Shows the tick for a moment, then marks the item done and lets it leave the list.
@@ -74,5 +93,6 @@ struct TodayView: View {
 #Preview {
     TodayView()
         .modelContainer(SampleData.previewContainer())
+        .environment(ReminderCenter())
 }
 #endif

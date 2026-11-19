@@ -25,7 +25,7 @@ struct ItemDraftTests {
         #expect(draft.name == "Monstera")
         #expect(draft.interval == Recurrence(count: 7, unit: .day))
         #expect(draft.firstDueDate == date(2026, 11, 19))
-        #expect(draft.reminderTime == TimeOfDay(hour: 9, minute: 0))
+        #expect(draft.reminderTime == TimeOfDay(hour: 10, minute: 30))
         #expect(draft.problems.isEmpty)
     }
 

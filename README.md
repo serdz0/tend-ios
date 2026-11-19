@@ -4,7 +4,7 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 
 > Built with Claude Code from my requirements; I specify and review, I do not write the Swift by hand. Started November 2026. Sample data and made-up names only.
 
-## What works now (Steps 1 and 2)
+## What works now (Steps 1 to 3)
 
 - **Today**: a greeting, one warm sentence about what is waiting, then "Waiting for you" (overdue), "For today" and "Coming up" (next 30 days).
 - Tap the circle to mark an item done. Swipe right to mark done, swipe left to snooze one day.
@@ -13,9 +13,10 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - Car presets: STK every 2 years, insurance yearly, winter tyres by 31 October, summer tyres around 1 April, oil service every 15,000 km (estimated from your odometer readings).
 - **Journal**: everything marked done or snoozed, grouped by day.
 - Light and dark mode. Works at the largest text size.
+- **Reminders**: a notification on the due day at 10:30 (changeable per item), with **Done** and **Snooze for a day** buttons. For oil service, Done opens the app to ask for the odometer. Tend asks permission from a friendly card on Today, not at launch. One reminder per item, no repeats.
 - Made-up sample items load on the first run of a debug build.
 
-Not built yet: reminders as notifications, app icon, widget.
+Not built yet: app icon, widget.
 
 ## Run it
 
@@ -43,6 +44,5 @@ Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting 
 
 ## Next
 
-3. Local notifications with Done and Snooze buttons.
 4. Polish: icon, maybe a home-screen widget.
 5. Run on a real iPhone, screenshots, short screen recording.

@@ -1,11 +1,15 @@
 import SwiftData
 import SwiftUI
+import UserNotifications
 
 @main
 struct TendApp: App {
     private let container: ModelContainer
+    private let reminders = ReminderCenter()
+    private let actionHandler: NotificationActionHandler
 
     init() {
+        let container: ModelContainer
         do {
             container = try ModelContainer(for: CareItem.self, CareEvent.self)
         } catch {
@@ -14,6 +18,13 @@ struct TendApp: App {
         #if DEBUG
         SampleData.seedIfEmpty(in: container.mainContext)
         #endif
+        self.container = container
+
+        // The system keeps only a weak reference to its delegate, so the app holds on to it.
+        let handler = NotificationActionHandler(container: container, reminders: reminders)
+        actionHandler = handler
+        reminders.registerCategories()
+        UNUserNotificationCenter.current().delegate = handler
     }
 
     var body: some Scene {
@@ -21,5 +32,6 @@ struct TendApp: App {
             RootView()
         }
         .modelContainer(container)
+        .environment(reminders)
     }
 }

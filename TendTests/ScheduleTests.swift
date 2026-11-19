@@ -65,7 +65,7 @@ struct ScheduleTests {
     // MARK: Time of day
 
     @Test func timeOfDayDefaultsToNineInTheMorning() {
-        #expect(TimeOfDay.defaultReminder == TimeOfDay(hour: 9, minute: 0))
+        #expect(TimeOfDay.defaultReminder == TimeOfDay(hour: 10, minute: 30))
     }
 
     @Test func timeOfDayBecomesADateOnTheGivenDay() {

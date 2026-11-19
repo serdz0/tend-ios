@@ -1,11 +1,11 @@
 import Foundation
 
-/// A time on the clock, such as 09:00. Used for the daily reminder.
+/// A time on the clock, such as 10:30. Used for the daily reminder.
 nonisolated struct TimeOfDay: Codable, Hashable {
     var hour: Int
     var minute: Int
 
-    static let defaultReminder = TimeOfDay(hour: 9, minute: 0)
+    static let defaultReminder = TimeOfDay(hour: 10, minute: 30)
 
     init(hour: Int, minute: Int) {
         self.hour = hour
@@ -14,7 +14,7 @@ nonisolated struct TimeOfDay: Codable, Hashable {
 
     init(date: Date, calendar: Calendar = .current) {
         let parts = calendar.dateComponents([.hour, .minute], from: date)
-        self.init(hour: parts.hour ?? 9, minute: parts.minute ?? 0)
+        self.init(hour: parts.hour ?? Self.defaultReminder.hour, minute: parts.minute ?? Self.defaultReminder.minute)
     }
 
     /// This time on the given day, for a time picker or a notification.

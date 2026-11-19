@@ -71,5 +71,6 @@ struct ItemFormView: View {
 #Preview {
     ItemFormView()
         .modelContainer(SampleData.previewContainer())
+        .environment(ReminderCenter())
 }
 #endif
