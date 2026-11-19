@@ -46,6 +46,11 @@ nonisolated struct DistanceSchedule: Codable, Hashable {
         return calendar.date(byAdding: .day, value: days, to: start) ?? start
     }
 
+    /// About how many days one service lasts at the usual pace of driving. At least one.
+    var daysPerInterval: Int {
+        max(Int((Double(intervalKm) / kmPerDay).rounded()), 1)
+    }
+
     /// A reading cannot be lower than the odometer was at the last service.
     func accepts(readingKm km: Int) -> Bool {
         km >= lastServiceKm

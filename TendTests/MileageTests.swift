@@ -105,3 +105,24 @@ struct MileageTests {
         #expect(monstera.distance == nil)
     }
 }
+
+/// How many days one service lasts, so the calendar can project the next ones.
+struct ServiceLengthTests {
+    @Test func fifteenThousandKmAtHundredADayIsOneHundredFiftyDays() {
+        let schedule = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 0, readingKm: 0,
+                                        readingDate: TestCalendar.date(2026, 11, 19), kmPerYear: 36_500)
+        #expect(schedule.daysPerInterval == 150)
+    }
+
+    @Test func roundsToWholeDays() {
+        let schedule = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 0, readingKm: 0,
+                                        readingDate: TestCalendar.date(2026, 11, 19), kmPerYear: 12_000)
+        #expect(schedule.daysPerInterval == 456)
+    }
+
+    @Test func isAtLeastOneDay() {
+        let schedule = DistanceSchedule(intervalKm: 1, lastServiceKm: 0, readingKm: 0,
+                                        readingDate: TestCalendar.date(2026, 11, 19), kmPerYear: 1_000_000)
+        #expect(schedule.daysPerInterval == 1)
+    }
+}
