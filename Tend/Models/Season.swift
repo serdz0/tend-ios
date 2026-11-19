@@ -4,15 +4,15 @@ import Foundation
 nonisolated enum Season: CaseIterable {
     /// April to September.
     case growing
-    /// March and October.
+    /// March, October and November.
     case shoulder
-    /// November to February.
+    /// December to February.
     case rest
 
     static func of(_ date: Date, calendar: Calendar = .current) -> Season {
         switch calendar.component(.month, from: date) {
         case 4...9: .growing
-        case 3, 10: .shoulder
+        case 3, 10, 11: .shoulder
         default: .rest
         }
     }

@@ -26,7 +26,10 @@ struct SeasonalWateringTests {
         #expect(Season.of(date(4, 1), calendar: calendar) == .growing)
         #expect(Season.of(date(9, 30), calendar: calendar) == .growing)
         #expect(Season.of(date(10, 1), calendar: calendar) == .shoulder)
-        #expect(Season.of(date(11, 1), calendar: calendar) == .rest)
+        // November is still autumn: winter starts on 1 December.
+        #expect(Season.of(date(11, 1), calendar: calendar) == .shoulder)
+        #expect(Season.of(date(11, 30), calendar: calendar) == .shoulder)
+        #expect(Season.of(date(12, 1), calendar: calendar) == .rest)
         #expect(Season.of(date(12, 25), calendar: calendar) == .rest)
         #expect(Season.of(date(1, 10, year: 2027), calendar: calendar) == .rest)
         #expect(Season.of(date(2, 28, year: 2027), calendar: calendar) == .rest)
@@ -95,17 +98,17 @@ struct SeasonalWateringTests {
     // MARK: Calendar
 
     @Test func futureDatesFollowTheChangingSeason() {
-        // Due 20 Oct (shoulder, 7 days), then 27 Oct (shoulder, 7), 3 Nov (winter, 14), 17 Nov.
-        let plant = dipladenia(due: date(10, 20))
-        let entries = CalendarEntries(items: [plant], from: date(10, 1), through: date(11, 30),
-                                      now: date(10, 19), calendar: calendar)
+        // Due 20 Nov (autumn, 7 days), then 27 Nov (autumn, 7), 4 Dec (winter, 14), 18 Dec.
+        let plant = dipladenia(due: date(11, 20))
+        let entries = CalendarEntries(items: [plant], from: date(11, 1), through: date(12, 31),
+                                      now: date(11, 19), calendar: calendar)
         var expected: [Date] = []
-        var day = TestCalendar.date(2026, 10, 1)
-        while day <= TestCalendar.date(2026, 11, 30) {
+        var day = TestCalendar.date(2026, 11, 1)
+        while day <= TestCalendar.date(2026, 12, 31) {
             if entries.entries(on: day).contains(where: { $0.kind == .expected }) { expected.append(day) }
             day = calendar.date(byAdding: .day, value: 1, to: day)!
         }
-        #expect(expected == [TestCalendar.date(2026, 10, 27), TestCalendar.date(2026, 11, 3), TestCalendar.date(2026, 11, 17)])
+        #expect(expected == [TestCalendar.date(2026, 11, 27), TestCalendar.date(2026, 12, 4), TestCalendar.date(2026, 12, 18)])
     }
 
     // MARK: The form
