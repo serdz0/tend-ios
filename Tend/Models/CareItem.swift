@@ -8,19 +8,38 @@ final class CareItem {
     var name: String
     var kind: ItemKind
     var task: String
-    var recurrence: Recurrence
+    var schedule: Schedule
     /// The day this is next due.
     var dueDate: Date
+    /// Set for plants, so the detail screen can say what sort of plant it is.
+    var plantType: PlantType?
+    /// What time of day the reminder arrives.
+    var reminderTime: TimeOfDay = TimeOfDay.defaultReminder
     @Relationship(deleteRule: .cascade, inverse: \CareEvent.item)
     var events: [CareEvent] = []
 
-    init(name: String, kind: ItemKind, task: String, recurrence: Recurrence, dueDate: Date) {
+    init(
+        name: String,
+        kind: ItemKind,
+        task: String,
+        schedule: Schedule,
+        dueDate: Date,
+        plantType: PlantType? = nil,
+        reminderTime: TimeOfDay = .defaultReminder
+    ) {
         self.id = UUID()
         self.name = name
         self.kind = kind
         self.task = task
-        self.recurrence = recurrence
+        self.schedule = schedule
         self.dueDate = dueDate
+        self.plantType = plantType
+        self.reminderTime = reminderTime
+    }
+
+    /// An item that repeats every so many days, weeks, months or years.
+    convenience init(name: String, kind: ItemKind, task: String, recurrence: Recurrence, dueDate: Date) {
+        self.init(name: name, kind: kind, task: task, schedule: .interval(recurrence), dueDate: dueDate)
     }
 
     /// "Water Monstera" for a plant, "STK inspection" for a car task.
@@ -29,6 +48,11 @@ final class CareItem {
         case .plant: "\(task) \(name)"
         case .car: task
         }
+    }
+
+    /// The mileage details, for items that repeat by distance.
+    var distance: DistanceSchedule? {
+        if case .distance(let distance) = schedule { distance } else { nil }
     }
 
     func status(now: Date = .now, calendar: Calendar = .current) -> DueStatus {
@@ -42,17 +66,41 @@ final class CareItem {
         return .upcoming(days: days)
     }
 
-    /// Marks it done. The next due date counts from today, not from the old due date,
-    /// so a plant watered late is not due again the next day.
-    func markDone(now: Date = .now, calendar: Calendar = .current) {
+    /// Marks it done and works out the next due date.
+    ///
+    /// - Every so many days or months: counts from today, not from the old due date, so a plant
+    ///   watered late is not due again the next day.
+    /// - A fixed date each year: the same date next year, however early or late it was done.
+    /// - By distance: restarts the count from the odometer reading (or the estimate if none is given).
+    func markDone(now: Date = .now, odometerKm: Int? = nil, calendar: Calendar = .current) {
         events.append(CareEvent(date: now, kind: .done))
-        dueDate = recurrence.next(after: calendar.startOfDay(for: now), calendar: calendar)
+        let today = calendar.startOfDay(for: now)
+
+        switch schedule {
+        case .interval(let recurrence):
+            dueDate = recurrence.next(after: today, calendar: calendar)
+        case .yearly(let month, let day):
+            let served = max(today, calendar.startOfDay(for: dueDate))
+            dueDate = Schedule.nextOccurrence(month: month, day: day, after: served, calendar: calendar)
+        case .distance(var distance):
+            distance.recordService(atKm: odometerKm, on: now, calendar: calendar)
+            schedule = .distance(distance)
+            dueDate = distance.dueDate(calendar: calendar)
+        }
     }
 
-    /// Pushes it to tomorrow.
+    /// Pushes it back one day: to tomorrow if it is due or overdue, otherwise one day later than planned.
     func snooze(now: Date = .now, calendar: Calendar = .current) {
         events.append(CareEvent(date: now, kind: .snoozed))
-        let today = calendar.startOfDay(for: now)
-        dueDate = calendar.date(byAdding: .day, value: 1, to: today) ?? today
+        let base = max(calendar.startOfDay(for: now), calendar.startOfDay(for: dueDate))
+        dueDate = calendar.date(byAdding: .day, value: 1, to: base) ?? base
+    }
+
+    /// Records a new odometer reading and re-estimates the due date. Does nothing for other schedules.
+    func updateMileage(km: Int, now: Date = .now, calendar: Calendar = .current) {
+        guard case .distance(var distance) = schedule else { return }
+        distance.updateReading(km: km, on: now)
+        schedule = .distance(distance)
+        dueDate = distance.dueDate(calendar: calendar)
     }
 }

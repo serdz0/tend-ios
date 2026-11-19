@@ -9,7 +9,7 @@ struct AllItemsView: View {
             List(items) { item in
                 VStack(alignment: .leading) {
                     Text(item.title)
-                    RecurrenceText(recurrence: item.recurrence)
+                    ScheduleText(schedule: item.schedule)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }

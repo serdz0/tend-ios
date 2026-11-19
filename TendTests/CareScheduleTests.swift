@@ -83,6 +83,18 @@ struct CareScheduleTests {
         #expect(monstera.events.first?.kind == .snoozed)
     }
 
+    @Test func snoozingAnItemDueTodayMovesItToTomorrow() {
+        let monstera = item(due: date(2026, 11, 19))
+        monstera.snooze(now: date(2026, 11, 19, hour: 10), calendar: calendar)
+        #expect(monstera.status(now: date(2026, 11, 19, hour: 10), calendar: calendar) == .upcoming(days: 1))
+    }
+
+    @Test func snoozingAnItemNotDueYetPushesItOneDayLaterNeverEarlier() {
+        let monstera = item(due: date(2026, 11, 23))   // in four days
+        monstera.snooze(now: date(2026, 11, 19, hour: 10), calendar: calendar)
+        #expect(monstera.status(now: date(2026, 11, 19, hour: 10), calendar: calendar) == .upcoming(days: 5))
+    }
+
     // MARK: Today sections
 
     @Test func sectionsSplitIntoOverdueTodayAndComingUp() {
