@@ -61,9 +61,9 @@ struct LocalizationTests {
     @Test func aPluralCanSitNextToAnotherPiece() throws {
         let list = "Zalít: Bazalka, Zalít: Fíkus"
         let cs = try bundle("cs")
-        #expect(String(localized: "\(1) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čeká na vás jedna věc: \(list).")
-        #expect(String(localized: "\(3) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čekají na vás 3 věci: \(list).")
-        #expect(String(localized: "\(7) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čeká na vás 7 věcí: \(list).")
+        #expect(String(localized: "\(1) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čeká na tebe jedna věc: \(list).")
+        #expect(String(localized: "\(3) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čekají na tebe 3 věci: \(list).")
+        #expect(String(localized: "\(7) things are waiting for you: \(list).", bundle: cs, locale: Locale(identifier: "cs")) == "Čeká na tebe 7 věcí: \(list).")
     }
 
     @Test func englishKeepsItsOwnPluralWording() {

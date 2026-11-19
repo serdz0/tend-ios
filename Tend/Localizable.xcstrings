@@ -50,7 +50,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rostlina „%@“ je trochu žíznivá. Rychlé zalití a máte hotovo."
+            "value": "Rostlina „%@“ je trochu žíznivá. Rychlé zalití a máš hotovo."
           }
         },
         "en": {
@@ -116,7 +116,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: termín se blíží. Máte čerstvý stav tachometru?"
+            "value": "%@: termín se blíží. Máš čerstvý stav tachometru?"
           }
         },
         "en": {
@@ -138,7 +138,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@: dnes je na řadě. Rychlé odškrtnutí a máte hotovo."
+            "value": "%@: dnes je na řadě. Rychlé odškrtnutí a máš hotovo."
           }
         },
         "en": {
@@ -160,7 +160,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ je na dnešním seznamu. Kdykoli se vám to hodí."
+            "value": "%@ je na dnešním seznamu. Kdykoli se ti to hodí."
           }
         },
         "en": {
@@ -601,25 +601,25 @@
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čekají na vás %1$lld věci: %2$@."
+                  "value": "Čekají na tebe %1$lld věci: %2$@."
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká na vás %1$lld věci: %2$@."
+                  "value": "Čeká na tebe %1$lld věci: %2$@."
                 }
               },
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká na vás jedna věc: %2$@."
+                  "value": "Čeká na tebe jedna věc: %2$@."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká na vás %1$lld věcí: %2$@."
+                  "value": "Čeká na tebe %1$lld věcí: %2$@."
                 }
               }
             }
@@ -683,25 +683,25 @@
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čekají %lld věci. Nic se neděje, nikam nespěchejte."
+                  "value": "Čekají %lld věci. Nic se neděje, nikam nespěchej."
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká %lld věci. Nic se neděje, nikam nespěchejte."
+                  "value": "Čeká %lld věci. Nic se neděje, nikam nespěchej."
                 }
               },
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká jedna věc. Nic se neděje, nikam nespěchejte."
+                  "value": "Čeká jedna věc. Nic se neděje, nikam nespěchej."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Čeká %lld věcí. Nic se neděje, nikam nespěchejte."
+                  "value": "Čeká %lld věcí. Nic se neděje, nikam nespěchej."
                 }
               }
             }
@@ -765,25 +765,25 @@
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dnes vás potřebují %lld věci."
+                  "value": "Dnes tě potřebují %lld věci."
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dnes vás potřebuje %lld věci."
+                  "value": "Dnes tě potřebuje %lld věci."
                 }
               },
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dnes vás potřebuje jedna drobnost."
+                  "value": "Dnes tě potřebuje jedna drobnost."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dnes vás potřebuje %lld věcí."
+                  "value": "Dnes tě potřebuje %lld věcí."
                 }
               }
             }
@@ -913,25 +913,25 @@
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dobrý začátek (%1$@): zalévat každé %2$lld dny. Záleží i na květináči, světle a ročním období, takže to upravte podle své rostliny."
+                  "value": "Dobrý začátek (%1$@): zalévat každé %2$lld dny. Záleží i na květináči, světle a ročním období, takže to uprav podle své rostliny."
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dobrý začátek (%1$@): zalévat každého %2$lld dne. Záleží i na květináči, světle a ročním období, takže to upravte podle své rostliny."
+                  "value": "Dobrý začátek (%1$@): zalévat každého %2$lld dne. Záleží i na květináči, světle a ročním období, takže to uprav podle své rostliny."
                 }
               },
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dobrý začátek (%1$@): zalévat každý den. Záleží i na květináči, světle a ročním období, takže to upravte podle své rostliny."
+                  "value": "Dobrý začátek (%1$@): zalévat každý den. Záleží i na květináči, světle a ročním období, takže to uprav podle své rostliny."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Dobrý začátek (%1$@): zalévat každých %2$lld dní. Záleží i na květináči, světle a ročním období, takže to upravte podle své rostliny."
+                  "value": "Dobrý začátek (%1$@): zalévat každých %2$lld dní. Záleží i na květináči, světle a ročním období, takže to uprav podle své rostliny."
                 }
               }
             }
@@ -992,7 +992,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ohlédnutí za vším, o co jste pečovali."
+            "value": "Ohlédnutí za vší tvou péčí."
           }
         },
         "en": {
@@ -1058,7 +1058,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Připomínka v den, kdy je která věc na řadě, v čase, který jste zvolili při přidání."
+            "value": "Připomínka v den, kdy je která věc na řadě, v čase zvoleném při přidání."
           }
         },
         "en": {
@@ -1102,7 +1102,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Drobnost na dnes: zalijte rostlinu „%@“."
+            "value": "Drobnost na dnes: zalij rostlinu „%@“."
           }
         },
         "en": {
@@ -1234,7 +1234,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Přidejte rostlinu nebo úkol pro auto a Tend vám připomene, kdy je na řadě."
+            "value": "Přidej rostlinu nebo úkol pro auto a Tend ti připomene, kdy je na řadě."
           }
         },
         "en": {
@@ -1300,7 +1300,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Po třech odloženích za sebou se vás Dnes jemně zeptá, jestli rozvrh sedí. Bez upozornění."
+            "value": "Po třech odloženích za sebou se tě Dnes jemně zeptá, jestli rozvrh sedí. Bez upozornění."
           }
         },
         "en": {
@@ -2650,7 +2650,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Všechno, o co pečujete, na jednom místě."
+            "value": "Všechno, o co pečuješ, na jednom místě."
           }
         },
         "en": {
@@ -2804,7 +2804,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dejte jí jméno, třeba Monstera v kuchyni"
+            "value": "Dej jí jméno, třeba Monstera v kuchyni"
           }
         },
         "en": {
@@ -2980,7 +2980,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jak vám Tend připomíná"
+            "value": "Jak ti Tend připomíná"
           }
         },
         "en": {
@@ -3002,7 +3002,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jak s vámi Tend mluví"
+            "value": "Jak s tebou Tend mluví"
           }
         },
         "en": {
@@ -3046,7 +3046,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jak vám má Tend připomínat?"
+            "value": "Jak ti má Tend připomínat?"
           }
         },
         "en": {
@@ -3068,7 +3068,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pokud Tend 3 dny neotevřete, upozornění se samy pozastaví. Otevřením se vrátí."
+            "value": "Pokud Tend 3 dny neotevřeš, upozornění se samy pozastaví. Otevřením se vrátí."
           }
         },
         "en": {
@@ -3320,7 +3320,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vrací se každý rok v tento den, ať to uděláte dřív, nebo o něco později."
+            "value": "Vrací se každý rok v tento den, ať to uděláš dřív, nebo o něco později."
           }
         },
         "en": {
@@ -3342,7 +3342,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Potřebuje jméno, abyste ji později snadno našli."
+            "value": "Potřebuje jméno, ať se později snadno najde."
           }
         },
         "en": {
@@ -3606,7 +3606,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Označte něco jako hotové a objeví se to tady, jako malý záznam vaší péče."
+            "value": "Označ něco jako hotové a objeví se to tady, jako malý záznam tvé péče."
           }
         },
         "en": {
@@ -3804,7 +3804,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tento týden vás nic nepotřebuje. Užijte si klid."
+            "value": "Tento týden tě nic nepotřebuje. Užij si klid."
           }
         },
         "en": {
@@ -3826,7 +3826,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zatím nic. Jakmile to označíte jako hotové nebo odložíte, objeví se to tady."
+            "value": "Zatím nic. Jakmile to označíš jako hotové nebo odložíš, objeví se to tady."
           }
         },
         "en": {
@@ -4156,7 +4156,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zvolte vzdálenost alespoň 1 km."
+            "value": "Zvol vzdálenost alespoň 1 km."
           }
         },
         "en": {
@@ -4178,7 +4178,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zvolte číslo 1 nebo vyšší."
+            "value": "Zvol číslo 1 nebo vyšší."
           }
         },
         "en": {
@@ -4310,7 +4310,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Rychlý způsob: pokud má vaše auto připojenou aplikaci, například MyMazda, může zobrazit všechny čtyři pneumatiky."
+            "value": "Rychlý způsob: pokud má tvoje auto připojenou aplikaci, například MyMazda, může zobrazit všechny čtyři pneumatiky."
           }
         },
         "en": {
@@ -4420,7 +4420,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Připomínky jsou vypnuté. Zapnete je v Nastavení."
+            "value": "Připomínky jsou vypnuté. Zapneš je v Nastavení."
           }
         },
         "en": {
@@ -4596,7 +4596,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zhruba kolik km ročně najedete?"
+            "value": "Zhruba kolik km ročně najedeš?"
           }
         },
         "en": {
@@ -4838,7 +4838,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Něco, co jste odstranili"
+            "value": "Něco, co bylo odstraněno"
           }
         },
         "en": {
@@ -5030,7 +5030,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Klíček vás povzbuzuje."
+            "value": "Klíček tě povzbuzuje."
           }
         },
         "en": {
@@ -5052,7 +5052,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Začněte tady"
+            "value": "Začni tady"
           }
         },
         "en": {
@@ -5140,7 +5140,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vypněte pro obyčejné odškrtnutí. Lístky vypne i Omezení pohybu v Nastavení iOS."
+            "value": "Vypni pro obyčejné odškrtnutí. Lístky vypne i Omezení pohybu v Nastavení iOS."
           }
         },
         "en": {
@@ -5228,7 +5228,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tend vám může každé ráno poslat jedno klidné upozornění s tím, co čeká, abyste to nemuseli držet v hlavě. Můžete ho kdykoli změnit nebo vypnout."
+            "value": "Tend ti může každé ráno poslat jedno klidné upozornění s tím, co čeká, takže to nemusíš držet v hlavě. Můžeš ho kdykoli změnit nebo vypnout."
           }
         },
         "en": {
@@ -5332,7 +5332,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tend mění četnost zalévání během roku za vás. Jsou to obecná čísla z pěstitelských příruček, takže je upravte podle své rostliny: vypnutím ročních období nastavíte vlastní."
+            "value": "Tend mění četnost zalévání během roku za tebe. Jsou to obecná čísla z pěstitelských příruček, takže je uprav podle své rostliny: vypnutím ročních období nastavíš vlastní."
           }
         },
         "en": {
@@ -5662,7 +5662,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Čeká na vás"
+            "value": "Čeká na tebe"
           }
         },
         "en": {
@@ -5684,7 +5684,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chcete jemné připomenutí?"
+            "value": "Chceš jemné připomenutí?"
           }
         },
         "en": {
@@ -5750,7 +5750,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "V zimě zalévejte o něco méně často."
+            "value": "V zimě zalévej o něco méně často."
           }
         },
         "en": {
@@ -5794,7 +5794,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vítejte zpět"
+            "value": "Vítej zpět"
           }
         },
         "en": {
@@ -5816,7 +5816,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vítejte v Tend. Přidejme první věc."
+            "value": "Vítej v Tend. Přidejme první věc."
           }
         },
         "en": {
@@ -5838,7 +5838,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Co přidáváte?"
+            "value": "Co přidáváš?"
           }
         },
         "en": {
@@ -5926,7 +5926,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Co je třeba udělat? Přidejte krátký název úkolu."
+            "value": "Co je třeba udělat? Přidej krátký název úkolu."
           }
         },
         "en": {
@@ -6014,7 +6014,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Na upozornění pro každou věc můžete přepnout v části „Jak s vámi Tend mluví“ na obrazovce Dnes."
+            "value": "Na upozornění pro každou věc můžeš přepnout v části „Jak s tebou Tend mluví“ na obrazovce Dnes."
           }
         },
         "en": {
@@ -6061,25 +6061,25 @@
               "few": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Všechno máte hotové. Tento týden vás čekají %lld věci."
+                  "value": "Všechno máš hotové. Tento týden tě čekají %lld věci."
                 }
               },
               "many": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Všechno máte hotové. Tento týden vás čeká %lld věci."
+                  "value": "Všechno máš hotové. Tento týden tě čeká %lld věci."
                 }
               },
               "one": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Všechno máte hotové. Tento týden vás čeká jedna drobnost."
+                  "value": "Všechno máš hotové. Tento týden tě čeká jedna drobnost."
                 }
               },
               "other": {
                 "stringUnit": {
                   "state": "translated",
-                  "value": "Všechno máte hotové. Tento týden vás čeká %lld věcí."
+                  "value": "Všechno máš hotové. Tento týden tě čeká %lld věcí."
                 }
               }
             }
@@ -6140,7 +6140,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Úkol „%@“ jste už několikrát odložili. To je úplně v pořádku. Chcete změnit, jak často se objevuje?"
+            "value": "Úkol „%@“ byl už několikrát odložen. To je úplně v pořádku. Chceš změnit, jak často se objevuje?"
           }
         },
         "en": {
@@ -6184,7 +6184,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vaše péče dosud"
+            "value": "Tvoje péče dosud"
           }
         },
         "en": {
@@ -6206,7 +6206,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Váš deník je prázdný"
+            "value": "Tvůj deník je prázdný"
           }
         },
         "en": {
@@ -6250,7 +6250,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Telefon neumí přečíst tachometr, takže Tend odhaduje termín podle toho, kolik ročně najedete. Občas zadejte čerstvý stav a odhad bude přesnější."
+            "value": "Telefon neumí přečíst tachometr, takže Tend odhaduje termín podle toho, kolik ročně najedeš. Občas zadej čerstvý stav a odhad bude přesnější."
           }
         },
         "en": {
@@ -6272,7 +6272,7 @@
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Vaše rostliny i auto jsou spokojené. Běžte si užít den."
+            "value": "Tvoje rostliny i auto jsou spokojené. Běž si užít den."
           }
         },
         "en": {
