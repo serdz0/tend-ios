@@ -8,6 +8,7 @@ extension CareCategory {
         case .inspection: Color(.heather)
         case .insurance: Color(.dusk)
         case .tyres: Color(.honey)
+        case .cleaning: Color(.mist)
         case .service, .other: Color(.stone)
         }
     }

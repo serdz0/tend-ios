@@ -19,6 +19,23 @@ struct PresetTests {
         #expect(PlantType.succulent.wateringDays == 21)
     }
 
+    /// Rules of thumb from general care guides; the real need changes with season, pot and light.
+    @Test func thePlantsAtHomeHaveSensibleStartingIntervals() {
+        #expect(PlantType.dracaena.wateringDays == 10)
+        #expect(PlantType.dipladenia.wateringDays == 7)
+        #expect(PlantType.campanula.wateringDays == 5)
+        #expect(PlantType.camellia.wateringDays == 7)
+        #expect(PlantType.strelitzia.wateringDays == 10)
+        #expect(PlantType.dracaena.defaultName == "Dracaena")
+        #expect(PlantType.dipladenia.defaultName == "Dipladenia")
+        #expect(PlantType.strelitzia.defaultName == "Strelitzia")
+    }
+
+    @Test func seasonalPlantsCarryATipAboutTheSeasons() {
+        #expect(PlantType.dipladenia.seasonTip?.contains("summer") == true)
+        #expect(PlantType.basil.seasonTip == nil)
+    }
+
     @Test func otherPlantHasNoPresetInterval() {
         #expect(PlantType.other.wateringDays == nil)
     }

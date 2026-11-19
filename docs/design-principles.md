@@ -20,6 +20,7 @@ Labels:
 | Quiet days (rest of today, 3 days, a week) | User control over interruptions | Standard |
 | Permission is asked only after the first thing is added or finished | Minimal setup, first value before configuration | Qualitative |
 | Check-in after 3 snoozes in a row, in the app, with "Don't ask again" | Repeated postponing may mean the schedule does not fit; no evidence on effect, so it can be switched off | Inference |
+| Routine chores (washing, cleaning, tyre pressure) never show as overdue and are mentioned only on their own day | A pile of low-stakes overdue chores adds guilt and noise; real deadlines stay visible | Inference |
 | Tap targets at least 44 pt, text scales, colour never the only clue | Accessibility floor | Standard |
 
 Not done on purpose: streaks that break, escalating reminders, analytics, any claim about outcomes.

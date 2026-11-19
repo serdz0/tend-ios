@@ -1,7 +1,7 @@
 import Foundation
 
 /// How a car preset repeats, before the owner has given any dates or mileage.
-enum ScheduleStyle: Equatable {
+nonisolated enum ScheduleStyle: Equatable {
     /// Every so many days, months or years.
     case interval(Recurrence)
     /// On the same calendar date every year.

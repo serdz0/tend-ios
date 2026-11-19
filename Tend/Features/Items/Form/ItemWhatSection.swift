@@ -29,10 +29,19 @@ struct ItemWhatSection: View {
             case .car:
                 if !isEditing {
                     Picker("What needs doing?", selection: $draft.carPreset) {
-                        ForEach(CarTaskPreset.allCases) { preset in
-                            Text(preset.displayName).tag(preset)
+                        ForEach(CarTaskGroup.allCases) { group in
+                            Section(group.title) {
+                                ForEach(group.presets) { preset in
+                                    Text(preset.displayName).tag(preset)
+                                }
+                            }
                         }
                     }
+                }
+                if let hint = draft.carPreset.hint {
+                    Label(hint, systemImage: "lightbulb")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
                 }
                 if draft.carPreset == .custom {
                     TextField("What needs doing? For example, replace wipers", text: $draft.customTask)

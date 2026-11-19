@@ -56,7 +56,7 @@ struct ItemDraft {
         interval = Recurrence(count: 1, unit: .year)
 
         if item.kind == .car {
-            let preset = CarTaskPreset.allCases.first { $0 != .custom && $0.taskName == item.task }
+            let preset = CarTaskPreset.preset(named: item.task)
             carPreset = preset ?? .custom
             customTask = preset == nil ? item.task : ""
         }

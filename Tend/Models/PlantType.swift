@@ -14,6 +14,11 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
     case zzPlant
     case aloeVera
     case succulent
+    case dracaena
+    case dipladenia
+    case campanula
+    case camellia
+    case strelitzia
     case other
 
     var id: Self { self }
@@ -42,6 +47,11 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
         case .zzPlant: "ZZ plant"
         case .aloeVera: "Aloe vera"
         case .succulent: "Succulent"
+        case .dracaena: "Dracaena"
+        case .dipladenia: "Dipladenia"
+        case .campanula: "Campanula"
+        case .camellia: "Camellia"
+        case .strelitzia: "Strelitzia"
         case .other: ""
         }
     }
@@ -51,10 +61,23 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
         switch self {
         case .basil: 3
         case .monstera, .fiddleLeafFig, .peaceLily, .orchid, .ficus: 7
-        case .pothos: 10
+        case .pothos, .dracaena, .strelitzia: 10
+        case .dipladenia: 7
+        case .campanula: 5
+        case .camellia: 7
         case .snakePlant, .zzPlant, .aloeVera: 14
         case .succulent: 21
         case .other: nil
+        }
+    }
+
+    /// A short tip for plants whose need changes a lot with the seasons. Most plants have none.
+    var seasonTip: String? {
+        switch self {
+        case .dipladenia: "Thirsty in summer (every 3 to 4 days), much less in winter (every 2 to 3 weeks)."
+        case .campanula: "Likes even moisture in spring and summer, and less in winter."
+        case .dracaena, .strelitzia: "Water a little less often in winter."
+        default: nil
         }
     }
 }

@@ -8,6 +8,7 @@ enum CareCategory: CaseIterable {
     case insurance
     case tyres
     case service
+    case cleaning
     case other
 
     init(item: CareItem) {
@@ -19,7 +20,10 @@ enum CareCategory: CaseIterable {
         case CarTaskPreset.stk.taskName: self = .inspection
         case CarTaskPreset.insurance.taskName: self = .insurance
         case CarTaskPreset.winterTyres.taskName, CarTaskPreset.summerTyres.taskName: self = .tyres
-        case CarTaskPreset.oilService.taskName: self = .service
+        case CarTaskPreset.oilService.taskName, CarTaskPreset.brakeFluid.taskName,
+             CarTaskPreset.filtersAndWipers.taskName, CarTaskPreset.batteryCheck.taskName: self = .service
+        case CarTaskPreset.tyrePressure.taskName: self = .tyres
+        case CarTaskPreset.washExterior.taskName, CarTaskPreset.cleanInterior.taskName: self = .cleaning
         default: self = .other
         }
     }
@@ -31,6 +35,7 @@ enum CareCategory: CaseIterable {
         case .insurance: "Insurance"
         case .tyres: "Tyres"
         case .service: "Servicing"
+        case .cleaning: "Cleaning"
         case .other: "Other"
         }
     }
@@ -42,6 +47,7 @@ enum CareCategory: CaseIterable {
         case .insurance: "shield"
         case .tyres: "arrow.triangle.2.circlepath"
         case .service: "wrench.and.screwdriver"
+        case .cleaning: "bubbles.and.sparkles"
         case .other: "checklist"
         }
     }

@@ -98,7 +98,11 @@ enum ReminderPlanner {
             mornings += 1
 
             let waiting = items
-                .filter { calendar.startOfDay(for: $0.dueDate) <= day }
+                .filter { item in
+                    let due = calendar.startOfDay(for: item.dueDate)
+                    // A routine chore is mentioned only on its own day, never carried over.
+                    return item.isRoutine ? due == day : due <= day
+                }
                 .sorted { $0.dueDate < $1.dueDate }
             guard !waiting.isEmpty else { continue }
 

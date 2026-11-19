@@ -55,13 +55,19 @@ final class CareItem {
         if case .distance(let distance) = schedule { distance } else { nil }
     }
 
+    /// Washing, cleaning and checking tyre pressure. These never count as overdue:
+    /// a missed one is simply there to do whenever you are ready.
+    var isRoutine: Bool {
+        kind == .car && CarTaskGroup.routine.presets.contains { $0.taskName == task }
+    }
+
     func status(now: Date = .now, calendar: Calendar = .current) -> DueStatus {
         let days = calendar.dateComponents(
             [.day],
             from: calendar.startOfDay(for: now),
             to: calendar.startOfDay(for: dueDate)
         ).day ?? 0
-        if days < 0 { return .overdue(days: -days) }
+        if days < 0 { return isRoutine ? .dueToday : .overdue(days: -days) }
         if days == 0 { return .dueToday }
         return .upcoming(days: days)
     }

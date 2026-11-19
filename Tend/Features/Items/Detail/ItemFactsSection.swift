@@ -13,6 +13,11 @@ struct ItemFactsSection: View {
             if let type = item.plantType {
                 LabeledContent("Type", value: type.displayName)
             }
+            if item.kind == .car, let hint = CarTaskPreset.preset(named: item.task)?.hint {
+                Label(hint, systemImage: "lightbulb")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
             LabeledContent("Reminder") {
                 Text(item.reminderTime.date(on: .now), format: .dateTime.hour().minute())
             }

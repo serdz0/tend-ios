@@ -10,7 +10,9 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - Tap the circle to mark an item done. Swipe right to mark done, swipe left to snooze one day.
 - **Calendar**: a short month grid with soft coloured dots, a summary of what needs doing, and the plan for the day you pick. Future dates are projected from each schedule.
 - **My things**: plants first, then each car, soonest due first. Add, edit and delete items; plants come with a type that sets the watering interval.
-- Car presets: STK every 2 years, insurance yearly, winter tyres by 31 October, summer tyres around 1 April, oil service every 15,000 km (estimated from your odometer readings).
+- Car presets, in three groups. Deadlines: STK every 2 years, insurance, highway vignette, first-aid kit check (yearly). Servicing: oil service every 15,000 km (estimated from your odometer readings), brake fluid every 2 years, cabin filter and wipers yearly, battery check each 15 October, winter tyres by 31 October, summer tyres around 1 April. Routine care: wash the car and clean the interior weekly, check tyre pressure monthly.
+- Routine care never goes overdue: a missed wash is simply there to do when you are ready, and shows in the morning note only on its own day.
+- More plant types with starting watering days from general care guides (dracaena, dipladenia, campanula, camellia, strelitzia, plus the earlier ones). Dipladenia and a few others carry a short season tip. Pot, light and season change the real need, so the interval is always editable.
 - **Journal**: everything marked done or snoozed, grouped by day.
 - Light and dark mode. Works at the largest text size.
 - **Reminders**: a notification on the due day at 10:30 (changeable per item), with **Done** and **Snooze for a day** buttons. For oil service, Done opens the app to ask for the odometer. Tend asks permission from a friendly card on Today, not at launch. One reminder per item, no repeats.
