@@ -45,7 +45,7 @@ Limits he knows: free Apple signing expires the on-device app every 7 days (paid
 
 ## Code rules
 
-- Skills in this folder and in `~/.claude/skills`: `swiftui-pro` (follow it) and `swiftui-design-skill`. Re-read `swiftui-pro` before reviewing.
+- Skills: `swiftui-pro` (follow it; install it from twostraws/SwiftUI-Agent-Skill, it is not in this repo, see `skills-lock.json`) and `swiftui-design-skill`. Re-read `swiftui-pro` before reviewing.
 - One type per Swift file. Views extracted into their own structs, not computed `some View` properties. Button actions in methods.
 - Shared sizes and colours live in `Tend/Design/Theme.swift`. Colours are asset-catalog colour sets with light and dark values.
 - The module defaults to main-actor isolation. Plain value types used by SwiftData models are marked `nonisolated`.
@@ -65,4 +65,4 @@ Install and screenshot without the simulator tool: `xcrun simctl install booted 
 
 - Commit emails: DONE. All commits now use the GitHub no-reply address (355532830+serdz0@users.noreply.github.com); history was rewritten on 19 November 2026 and checked (no real email in any commit). A backup of the old history sits outside the repo (`~/Projects/tend-before-rewrite.bundle`); delete it once the repo is public. Never push that bundle.
 - Ask before creating the public GitHub repo. Pick a descriptive repo name (the folder is still called `swiftui-app`).
-- Third-party skill: `.claude/skills/swiftui-pro` is MIT (Paul Hudson) but its licence text is not in the folder. Decision pending: keep it with credit, or leave it out of the repo (it is pinned in `skills-lock.json`).
+- Third-party skill: DONE. `swiftui-pro` (MIT, Paul Hudson) is removed from the repo and its history; `skills-lock.json` pins it and the README says how to install it.

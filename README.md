@@ -69,9 +69,13 @@ Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting 
 
 ## Skills used
 
-[`swiftui-pro`](https://github.com/twostraws/SwiftUI-Agent-Skill) (code review rules, MIT, by Paul Hudson), installed in `.claude/skills/swiftui-pro/` (recorded in `skills-lock.json`), plus a SwiftUI design skill for the look.
+[`swiftui-pro`](https://github.com/twostraws/SwiftUI-Agent-Skill) (code review rules, MIT, by Paul Hudson) guided the code. It is not copied into this repo; `skills-lock.json` pins the exact version, and `npx skills add twostraws/SwiftUI-Agent-Skill` installs it. A SwiftUI design skill guided the look.
 
 ## Next
 
 4. Polish: icon, maybe a home-screen widget.
 5. Run on a real iPhone. (Screenshots and a short recording are in `docs/`.)
+
+## Licence
+
+MIT, see [LICENSE](LICENSE).
