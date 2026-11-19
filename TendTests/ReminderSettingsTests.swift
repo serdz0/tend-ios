@@ -61,9 +61,13 @@ struct ReminderSettingsTests {
 
     @Test func describesItselfInPlainWords() {
         var settings = ReminderSettings()
-        #expect(settings.summary == "One note each morning at 10:30")
+        // The time follows the phone's own clock style, so build the expectation the same way.
+        func time(_ hour: Int, _ minute: Int) -> String {
+            TimeOfDay(hour: hour, minute: minute).date(on: .now).formatted(date: .omitted, time: .shortened)
+        }
+        #expect(settings.summary == "One note each morning at \(time(10, 30))")
         settings.digestTime = TimeOfDay(hour: 8, minute: 5)
-        #expect(settings.summary == "One note each morning at 8:05")
+        #expect(settings.summary == "One note each morning at \(time(8, 5))")
         settings.style = .perItem
         #expect(settings.summary == "A note for each thing")
     }

@@ -19,9 +19,11 @@ struct ItemReminderSection: View {
                 Button("Reminders are off. Open Settings to turn them on.", systemImage: "bell.slash", action: openSettings)
             }
         } footer: {
-            Text(settings.settings.style == .perItem
-                 ? "The time of day for a gentle nudge."
-                 : "You can switch to a note for each thing under \"How Tend talks to you\" on Today.")
+            if settings.settings.style == .perItem {
+                Text("The time of day for a gentle nudge.")
+            } else {
+                Text("You can switch to a note for each thing under \"How Tend talks to you\" on Today.")
+            }
         }
     }
 

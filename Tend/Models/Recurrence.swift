@@ -11,10 +11,10 @@ nonisolated enum RecurrenceUnit: String, Codable, CaseIterable, Identifiable {
     /// For the unit picker.
     var pluralName: String {
         switch self {
-        case .day: "Days"
-        case .week: "Weeks"
-        case .month: "Months"
-        case .year: "Years"
+        case .day: String(localized: "Days")
+        case .week: String(localized: "Weeks")
+        case .month: String(localized: "Months")
+        case .year: String(localized: "Years")
         }
     }
 

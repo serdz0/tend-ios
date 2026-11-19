@@ -9,8 +9,8 @@ nonisolated enum ItemKind: String, Codable, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .plant: "Plant"
-        case .car: "Car"
+        case .plant: String(localized: "Plant")
+        case .car: String(localized: "Car")
         }
     }
 

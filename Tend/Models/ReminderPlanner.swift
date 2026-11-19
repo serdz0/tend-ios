@@ -62,19 +62,19 @@ enum ReminderPlanner {
         switch item.kind {
         case .plant:
             [
-                "Your \(item.name) would love a drink today.",
-                "\(item.name) is a little thirsty. A quick drink and you're done.",
-                "A small one for today: water your \(item.name).",
+                String(localized: "Your \(item.name) would love a drink today."),
+                String(localized: "\(item.name) is a little thirsty. A quick drink and you're done."),
+                String(localized: "A small one for today: water your \(item.name)."),
             ][variant % 3]
         case .car where item.distance != nil:
             [
-                "\(item.task) is due around now. Got a fresh odometer reading?",
-                "\(item.task) is coming up about now. A quick odometer check helps.",
+                String(localized: "\(item.displayTask) is due around now. Got a fresh odometer reading?"),
+                String(localized: "\(item.displayTask) is coming up about now. A quick odometer check helps."),
             ][variant % 2]
         case .car:
             [
-                "\(item.task) is due today. A quick tick and you're set.",
-                "\(item.task) is on today's list. Whenever suits you.",
+                String(localized: "\(item.displayTask) is due today. A quick tick and you're set."),
+                String(localized: "\(item.displayTask) is on today's list. Whenever suits you."),
             ][variant % 2]
         }
     }
@@ -124,19 +124,18 @@ enum ReminderPlanner {
         let list: String
         switch count {
         case 0, 1: list = titles.first ?? ""
-        case 2: list = "\(titles[0]) and \(titles[1])"
-        case 3: list = "\(titles[0]), \(titles[1]) and \(titles[2])"
-        default: list = "\(titles[0]), \(titles[1]), \(titles[2]) and \(count - 3) more"
+        case 2: list = String(localized: "\(titles[0]) and \(titles[1])")
+        case 3: list = String(localized: "\(titles[0]), \(titles[1]) and \(titles[2])")
+        default: list = String(localized: "\(titles[0]), \(titles[1]), \(titles[2]) and \(count - 3) more")
         }
 
         switch variant % 3 {
         case 0:
-            let how = count == 1 ? "One thing is" : "\(count) things are"
-            return "\(how) waiting for you: \(list)."
+            return String(localized: "\(count) things are waiting for you: \(list).")
         case 1:
-            return "A small list for today: \(list)."
+            return String(localized: "A small list for today: \(list).")
         default:
-            return "A gentle heads-up: \(list). One at a time is plenty."
+            return String(localized: "A gentle heads-up: \(list). One at a time is plenty.")
         }
     }
 

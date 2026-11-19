@@ -11,10 +11,10 @@ nonisolated enum CarTaskGroup: CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .deadlines: "Deadlines"
-        case .servicing: "Servicing"
-        case .routine: "Routine care"
-        case .yourOwn: "Your own"
+        case .deadlines: String(localized: "Deadlines")
+        case .servicing: String(localized: "Servicing")
+        case .routine: String(localized: "Routine care")
+        case .yourOwn: String(localized: "Your own")
         }
     }
 
@@ -47,7 +47,9 @@ nonisolated enum CarTaskPreset: String, CaseIterable, Identifiable {
 
     var id: Self { self }
 
-    /// Task name on the Today screen. Empty for a custom task, which you name yourself.
+    /// The task name as it is saved with an item. Always English, so saved items keep matching
+    /// their preset whatever language the phone speaks. Empty for a custom task. Show
+    /// `localizedName` to people.
     var taskName: String {
         switch self {
         case .stk: "STK inspection"
@@ -67,9 +69,29 @@ nonisolated enum CarTaskPreset: String, CaseIterable, Identifiable {
         }
     }
 
+    /// The task name in the language of the phone. This is what people read.
+    var localizedName: String {
+        switch self {
+        case .stk: String(localized: "STK inspection")
+        case .insurance: String(localized: "Insurance renewal")
+        case .vignette: String(localized: "Highway vignette")
+        case .firstAidKit: String(localized: "Check the first-aid kit")
+        case .oilService: String(localized: "Oil service")
+        case .brakeFluid: String(localized: "Brake fluid change")
+        case .filtersAndWipers: String(localized: "Cabin filter and wipers")
+        case .batteryCheck: String(localized: "Check the car battery")
+        case .winterTyres: String(localized: "Fit winter tyres")
+        case .summerTyres: String(localized: "Fit summer tyres")
+        case .washExterior: String(localized: "Wash the car")
+        case .cleanInterior: String(localized: "Clean the interior")
+        case .tyrePressure: String(localized: "Check tyre pressure")
+        case .custom: ""
+        }
+    }
+
     /// How the picker names it.
     var displayName: String {
-        self == .custom ? "Other task" : taskName
+        self == .custom ? String(localized: "Other task") : localizedName
     }
 
     var scheduleStyle: ScheduleStyle {
@@ -93,7 +115,7 @@ nonisolated enum CarTaskPreset: String, CaseIterable, Identifiable {
     /// A small tip shown under the task in the form. Most tasks have none.
     var hint: String? {
         switch self {
-        case .tyrePressure: "Quick way: if your car has a connected app, like MyMazda, it can show all four tyres."
+        case .tyrePressure: String(localized: "Quick way: if your car has a connected app, like MyMazda, it can show all four tyres.")
         default: nil
         }
     }

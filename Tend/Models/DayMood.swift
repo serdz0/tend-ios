@@ -46,10 +46,10 @@ struct DayMood: Equatable {
 
     static func sentence(for kind: Kind) -> String {
         switch kind {
-        case .celebrating: "Sprout is cheering. Everything is done."
-        case .resting: "Sprout is relaxing in the sun."
-        case .cheerful: "Sprout is smiling."
-        case .encouraging: "Sprout is waving you on."
+        case .celebrating: String(localized: "Sprout is cheering. Everything is done.")
+        case .resting: String(localized: "Sprout is relaxing in the sun.")
+        case .cheerful: String(localized: "Sprout is smiling.")
+        case .encouraging: String(localized: "Sprout is waving you on.")
         }
     }
 }

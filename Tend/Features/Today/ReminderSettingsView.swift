@@ -23,9 +23,11 @@ struct ReminderSettingsView: View {
                 } header: {
                     Text("How should Tend remind you?")
                 } footer: {
-                    Text(store.settings.style == .digest
-                         ? "One calm note a day with everything that is waiting. Fewer pings, same help."
-                         : "A reminder on each thing's own day, at the time you chose when you added it.")
+                    if store.settings.style == .digest {
+                        Text("One calm note a day with everything that is waiting. Fewer pings, same help.")
+                    } else {
+                        Text("A reminder on each thing's own day, at the time you chose when you added it.")
+                    }
                 }
 
                 if store.settings.style == .digest {

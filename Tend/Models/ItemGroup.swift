@@ -21,7 +21,7 @@ struct ItemGroup: Identifiable {
 
         let plants = items.filter { $0.kind == .plant }
         if !plants.isEmpty {
-            groups.append(ItemGroup(id: "plants", title: "Plants", kind: .plant, items: soonest(plants)))
+            groups.append(ItemGroup(id: "plants", title: String(localized: "Plants"), kind: .plant, items: soonest(plants)))
         }
 
         let cars = Dictionary(grouping: items.filter { $0.kind == .car }, by: \.name)

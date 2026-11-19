@@ -109,7 +109,7 @@ struct ItemDraft {
     /// Call after `kind` changes.
     mutating func applyKindDefaults(now: Date = .now, calendar: Calendar = .current) {
         if isDefaultName(name) {
-            name = kind == .plant ? plantType.defaultName : "Car"
+            name = kind == .plant ? plantType.defaultName : String(localized: "Car")
         }
         switch kind {
         case .plant: applyPlantTypeDefaults()
@@ -160,7 +160,9 @@ struct ItemDraft {
     /// True for an empty name, "Car", or the stock name of any plant type: safe to replace.
     private func isDefaultName(_ name: String) -> Bool {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty || trimmed == "Car" || PlantType.allCases.contains { $0.defaultName == trimmed }
+        return trimmed.isEmpty
+            || Languages.variants { String(localized: "Car", bundle: $0) }.contains(trimmed)
+            || PlantType.allCases.contains { $0.defaultNameInAnyLanguage.contains(trimmed) }
     }
 
     // MARK: Checks before saving

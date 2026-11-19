@@ -77,7 +77,7 @@ struct FreshStartTests {
         let before = items.map(\.dueDate)
         let undo = FreshStart(items: items, now: now, calendar: calendar).apply()
 
-        #expect(undo.message == "Spread 3 plants over 2 days.")
+        #expect(undo.message == "Spread 3 plants over the next few days.")
         undo.apply()
         #expect(items.map(\.dueDate) == before)
     }

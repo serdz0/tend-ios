@@ -7,6 +7,10 @@ struct CatchUpCard: View {
     let onFreshStart: () -> Void
     let onDismiss: () -> Void
 
+    private var dismissTitle: LocalizedStringKey {
+        freshStart == nil ? "Got it" : "Not now"
+    }
+
     var body: some View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
             if let welcome {
@@ -32,7 +36,7 @@ struct CatchUpCard: View {
                     .padding(.top, Theme.Spacing.xs)
             }
 
-            Button(freshStart == nil ? "Got it" : "Not now", action: onDismiss)
+            Button(dismissTitle, action: onDismiss)
                 .buttonStyle(.borderless)
                 .frame(minHeight: Theme.minimumTapSize)
         }

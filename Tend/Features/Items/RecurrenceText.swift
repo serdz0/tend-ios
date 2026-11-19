@@ -7,10 +7,10 @@ struct RecurrenceText: View {
     var body: some View {
         let count = recurrence.count
         switch recurrence.unit {
-        case .day: Text("Every ^[\(count) day](inflect: true)")
-        case .week: Text("Every ^[\(count) week](inflect: true)")
-        case .month: Text("Every ^[\(count) month](inflect: true)")
-        case .year: Text("Every ^[\(count) year](inflect: true)")
+        case .day: Text("Every \(count) days")
+        case .week: Text("Every \(count) weeks")
+        case .month: Text("Every \(count) months")
+        case .year: Text("Every \(count) years")
         }
     }
 }

@@ -32,10 +32,10 @@ final class ReminderCenter {
 
     /// The Done and Snooze buttons on a reminder. Call once at launch.
     func registerCategories() {
-        let snooze = UNNotificationAction(identifier: Self.snoozeAction, title: "Snooze for a day", options: [])
+        let snooze = UNNotificationAction(identifier: Self.snoozeAction, title: String(localized: "Snooze for a day"), options: [])
         // Done runs in the background, except for distance tasks, which open the app to ask for the odometer.
-        let done = UNNotificationAction(identifier: Self.doneAction, title: "Done", options: [])
-        let doneInApp = UNNotificationAction(identifier: Self.doneAction, title: "Done", options: [.foreground])
+        let done = UNNotificationAction(identifier: Self.doneAction, title: String(localized: "Done"), options: [])
+        let doneInApp = UNNotificationAction(identifier: Self.doneAction, title: String(localized: "Done"), options: [.foreground])
         center.setNotificationCategories([
             UNNotificationCategory(identifier: Self.plainCategory, actions: [done, snooze],
                                    intentIdentifiers: [], options: []),
@@ -91,7 +91,7 @@ final class ReminderCenter {
         guard status == .allowed else { return }
         let content = UNMutableNotificationContent()
         content.title = item.title
-        content.body = "Test reminder. Pull down and try the buttons."
+        content.body = "Test reminder. Pull down and try the buttons." // debug only
         content.sound = .default
         content.categoryIdentifier = item.distance != nil ? Self.distanceCategory : Self.plainCategory
         content.userInfo = ["itemID": item.id.uuidString]

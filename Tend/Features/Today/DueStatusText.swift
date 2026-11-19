@@ -9,16 +9,20 @@ struct DueStatusText: View {
     var body: some View {
         switch status {
         case .overdue(let days):
-            Text("^[\(days) day](inflect: true) overdue")
+            Text("\(days) days overdue")
         case .dueToday:
             Text("Due today")
         case .upcoming(let days) where days == 1:
-            Text(isEstimate ? "Around tomorrow" : "Tomorrow")
+            if isEstimate {
+                Text("Around tomorrow")
+            } else {
+                Text("Tomorrow")
+            }
         case .upcoming(let days):
             if isEstimate {
-                Text("In about ^[\(days) day](inflect: true)")
+                Text("In about \(days) days")
             } else {
-                Text("In ^[\(days) day](inflect: true)")
+                Text("In \(days) days")
             }
         }
     }

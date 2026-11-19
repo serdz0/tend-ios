@@ -14,6 +14,10 @@ struct ItemFormView: View {
         _draft = State(initialValue: item.map { ItemDraft(editing: $0) } ?? ItemDraft())
     }
 
+    private var titleText: LocalizedStringKey {
+        editing == nil ? "Add something" : "Edit details"
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -31,7 +35,7 @@ struct ItemFormView: View {
             .listRowBackground(Theme.card)
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
-            .navigationTitle(editing == nil ? "Add something" : "Edit details")
+            .navigationTitle(titleText)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

@@ -56,6 +56,6 @@ struct CalendarDayCell: View {
     private var accessibilityText: String {
         let date = day.formatted(.dateTime.weekday(.wide).day().month(.wide))
         guard entryCount > 0 else { return date }
-        return date + ", " + String(localized: "^[\(entryCount) thing](inflect: true)")
+        return date + ", " + String(localized: "\(entryCount) things")
     }
 }

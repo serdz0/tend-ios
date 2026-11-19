@@ -11,8 +11,8 @@ struct ItemGroupHeader: View {
                 .foregroundStyle(.primary)
             Spacer()
             switch group.kind {
-            case .plant: Text("^[\(group.items.count) plant](inflect: true)")
-            case .car: Text("^[\(group.items.count) task](inflect: true)")
+            case .plant: Text("\(group.items.count) plants")
+            case .car: Text("\(group.items.count) tasks")
             }
         }
         .textCase(nil)

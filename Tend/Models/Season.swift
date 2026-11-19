@@ -20,9 +20,9 @@ nonisolated enum Season: CaseIterable {
     /// The word used in sentences.
     var name: String {
         switch self {
-        case .growing: "summer"
-        case .shoulder: "spring or autumn"
-        case .rest: "winter"
+        case .growing: String(localized: "summer")
+        case .shoulder: String(localized: "spring or autumn")
+        case .rest: String(localized: "winter")
         }
     }
 }
@@ -46,6 +46,6 @@ nonisolated struct SeasonalWatering: Hashable {
     }
 
     var summary: String {
-        "Every \(growing) days in summer, every \(shoulder) in spring or autumn, every \(rest) in winter."
+        String(localized: "Days between waterings: summer \(growing), spring or autumn \(shoulder), winter \(rest).")
     }
 }

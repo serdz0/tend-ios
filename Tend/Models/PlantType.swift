@@ -26,34 +26,45 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
     /// How the type appears in the picker.
     var displayName: String {
         switch self {
-        case .basil: "Basil or herbs"
-        case .succulent: "Cactus or succulent"
-        case .other: "Other plant"
+        case .basil: String(localized: "Basil or herbs")
+        case .succulent: String(localized: "Cactus or succulent")
+        case .other: String(localized: "Other plant")
         default: defaultName
         }
     }
 
     /// Suggested name for the plant. Empty for "other", because only you know what it is.
     var defaultName: String {
+        defaultName(in: .main)
+    }
+
+    /// The suggested name in one language, given by that language's resource bundle. Used to
+    /// recognise a stock name that was filled in while the phone spoke another language.
+    func defaultName(in bundle: Bundle) -> String {
         switch self {
-        case .basil: "Basil"
-        case .monstera: "Monstera"
-        case .fiddleLeafFig: "Fiddle leaf fig"
-        case .peaceLily: "Peace lily"
-        case .orchid: "Orchid"
-        case .ficus: "Ficus"
-        case .pothos: "Pothos"
-        case .snakePlant: "Snake plant"
-        case .zzPlant: "ZZ plant"
-        case .aloeVera: "Aloe vera"
-        case .succulent: "Succulent"
-        case .dracaena: "Dracaena"
-        case .dipladenia: "Dipladenia"
-        case .campanula: "Campanula"
-        case .camellia: "Camellia"
-        case .strelitzia: "Strelitzia"
+        case .basil: String(localized: "Basil", bundle: bundle)
+        case .monstera: String(localized: "Monstera", bundle: bundle)
+        case .fiddleLeafFig: String(localized: "Fiddle leaf fig", bundle: bundle)
+        case .peaceLily: String(localized: "Peace lily", bundle: bundle)
+        case .orchid: String(localized: "Orchid", bundle: bundle)
+        case .ficus: String(localized: "Ficus", bundle: bundle)
+        case .pothos: String(localized: "Pothos", bundle: bundle)
+        case .snakePlant: String(localized: "Snake plant", bundle: bundle)
+        case .zzPlant: String(localized: "ZZ plant", bundle: bundle)
+        case .aloeVera: String(localized: "Aloe vera", bundle: bundle)
+        case .succulent: String(localized: "Succulent", bundle: bundle)
+        case .dracaena: String(localized: "Dracaena", bundle: bundle)
+        case .dipladenia: String(localized: "Dipladenia", bundle: bundle)
+        case .campanula: String(localized: "Campanula", bundle: bundle)
+        case .camellia: String(localized: "Camellia", bundle: bundle)
+        case .strelitzia: String(localized: "Strelitzia", bundle: bundle)
         case .other: ""
         }
+    }
+
+    /// The stock name in every language the app speaks.
+    var defaultNameInAnyLanguage: Set<String> {
+        Languages.variants { defaultName(in: $0) }
     }
 
     /// Days between waterings. Nil for "other".
@@ -84,9 +95,9 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
     /// A short tip for plants whose need changes a lot with the seasons. Most plants have none.
     var seasonTip: String? {
         switch self {
-        case .dipladenia: "Thirsty in summer (every 3 to 4 days), much less in winter (every 2 to 3 weeks)."
-        case .campanula: "Likes even moisture in spring and summer, and less in winter."
-        case .dracaena, .strelitzia: "Water a little less often in winter."
+        case .dipladenia: String(localized: "Thirsty in summer (every 3 to 4 days), much less in winter (every 2 to 3 weeks).")
+        case .campanula: String(localized: "Likes even moisture in spring and summer, and less in winter.")
+        case .dracaena, .strelitzia: String(localized: "Water a little less often in winter.")
         default: nil
         }
     }

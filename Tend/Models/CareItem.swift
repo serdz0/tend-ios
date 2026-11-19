@@ -46,12 +46,17 @@ final class CareItem {
         self.init(name: name, kind: kind, task: task, schedule: .interval(recurrence), dueDate: dueDate)
     }
 
-    /// "Water Monstera" for a plant, "STK inspection" for a car task.
+    /// "Water Monstera" for a plant, "STK inspection" for a car task, in the language of the phone.
     var title: String {
         switch kind {
-        case .plant: "\(task) \(name)"
-        case .car: task
+        case .plant: String(localized: "Water \(name)")
+        case .car: displayTask
         }
+    }
+
+    /// The task as people read it. A preset is translated; a task you typed stays as you typed it.
+    var displayTask: String {
+        CarTaskPreset.preset(named: task)?.localizedName ?? task
     }
 
     /// The seasonal pattern in use, if this plant follows the seasons.
@@ -120,7 +125,7 @@ final class CareItem {
             schedule = .distance(distance)
             dueDate = distance.dueDate(calendar: calendar)
         }
-        return CareUndo(message: "\(title) is done.", restores: [restore])
+        return CareUndo(message: String(localized: "\(title) is done."), restores: [restore])
     }
 
     /// Pushes it back one day: to tomorrow if it is due or overdue, otherwise one day later than planned.
@@ -132,7 +137,7 @@ final class CareItem {
         events.append(event)
         let base = max(calendar.startOfDay(for: now), calendar.startOfDay(for: dueDate))
         dueDate = calendar.date(byAdding: .day, value: 1, to: base) ?? base
-        return CareUndo(message: "\(title) is snoozed for a day.", restores: [restore])
+        return CareUndo(message: String(localized: "\(title) is snoozed for a day."), restores: [restore])
     }
 
     /// How many times in a row it has been snoozed, counting back from the latest entry. Done starts it again.

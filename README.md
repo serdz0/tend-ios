@@ -28,6 +28,7 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - **How Tend talks to you**: one sheet (bottom of Today) with every switch above.
 - Made-up sample items load on the first run of a debug build.
 
+- **Languages**: English, Czech and Ukrainian, with proper plural forms in each (1 den, 2 dny, 5 dní). Follows the phone's language. Translations were written by Claude and are waiting for a native read.
 - **App icon**: the sprout, in light, dark and tinted versions. Drawn by a script (`tools/make-icon.swift`), so it can be changed and redrawn in seconds.
 
 Not built yet: widget.

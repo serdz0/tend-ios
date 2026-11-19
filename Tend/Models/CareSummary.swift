@@ -34,19 +34,15 @@ struct CareSummary {
 
     var headline: String {
         if hasNothingYet {
-            return "Welcome to Tend. Let's add your first thing."
+            return String(localized: "Welcome to Tend. Let's add your first thing.")
         }
         return switch (needsAttention, thisWeek) {
         case (0, 0):
-            "Nothing needs you this week. Enjoy the calm."
-        case (0, 1):
-            "You're all caught up. One small thing is coming this week."
+            String(localized: "Nothing needs you this week. Enjoy the calm.")
         case (0, let week):
-            "You're all caught up. \(week) things are coming this week."
-        case (1, _):
-            "One little thing needs you today."
+            String(localized: "You're all caught up. \(week) things are coming this week.")
         case (let count, _):
-            "\(count) things need you today."
+            String(localized: "\(count) things need you today.")
         }
     }
 }

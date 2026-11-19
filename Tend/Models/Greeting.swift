@@ -4,10 +4,10 @@ import Foundation
 enum Greeting {
     static func text(at date: Date, calendar: Calendar = .current) -> String {
         switch DayPeriod.of(date, calendar: calendar) {
-        case .morning: "Good morning"
-        case .afternoon: "Good afternoon"
-        case .evening: "Good evening"
-        case .night: "Hello, night owl"
+        case .morning: String(localized: "Good morning")
+        case .afternoon: String(localized: "Good afternoon")
+        case .evening: String(localized: "Good evening")
+        case .night: String(localized: "Hello, night owl")
         }
     }
 }

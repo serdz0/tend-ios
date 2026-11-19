@@ -33,14 +33,13 @@ struct WelcomeBack {
         self.firstStep = first
     }
 
-    var title: String { "Welcome back" }
+    var title: String { String(localized: "Welcome back") }
 
     var message: String {
-        let count = waiting == 1 ? "1 thing is" : "\(waiting) things are"
-        return "\(count) waiting. Nothing is wrong, and there's no rush."
+        String(localized: "\(waiting) things are waiting. Nothing is wrong, and there's no rush.")
     }
 
     var suggestion: String {
-        "A small place to start: \(firstStep.title)."
+        String(localized: "A small place to start: \(firstStep.title).")
     }
 }

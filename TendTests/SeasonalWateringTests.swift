@@ -60,7 +60,7 @@ struct SeasonalWateringTests {
 
     @Test func theSummaryIsPlainWords() {
         let watering = SeasonalWatering(growing: 4, shoulder: 7, rest: 14)
-        #expect(watering.summary == "Every 4 days in summer, every 7 in spring or autumn, every 14 in winter.")
+        #expect(watering.summary == "Days between waterings: summer 4, spring or autumn 7, winter 14.")
     }
 
     // MARK: Marking done

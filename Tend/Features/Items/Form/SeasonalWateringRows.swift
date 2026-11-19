@@ -9,7 +9,7 @@ struct SeasonalWateringRows: View {
     var body: some View {
         let season = Season.of(now)
         LabeledContent("Right now") {
-            Text("Every ^[\(watering.days(in: season)) day](inflect: true) (\(season.name))")
+            Text("Every \(watering.days(in: season)) days (\(season.name))")
         }
         Text(watering.summary)
             .font(.footnote)

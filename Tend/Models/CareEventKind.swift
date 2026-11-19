@@ -7,8 +7,8 @@ nonisolated enum CareEventKind: String, Codable {
     /// The word shown in the history. Always words, never colour alone.
     var title: String {
         switch self {
-        case .done: "Done"
-        case .snoozed: "Snoozed"
+        case .done: String(localized: "Done")
+        case .snoozed: String(localized: "Snoozed")
         }
     }
 

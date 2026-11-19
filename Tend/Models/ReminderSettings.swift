@@ -43,10 +43,10 @@ nonisolated struct ReminderSettings: Codable, Hashable {
     var summary: String {
         switch style {
         case .digest:
-            let minute = digestTime.minute < 10 ? "0\(digestTime.minute)" : "\(digestTime.minute)"
-            return "One note each morning at \(digestTime.hour):\(minute)"
+            let time = digestTime.date(on: .now).formatted(date: .omitted, time: .shortened)
+            return String(localized: "One note each morning at \(time)")
         case .perItem:
-            return "A note for each thing"
+            return String(localized: "A note for each thing")
         }
     }
 }

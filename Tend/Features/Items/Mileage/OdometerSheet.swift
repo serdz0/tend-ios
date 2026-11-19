@@ -40,19 +40,33 @@ struct OdometerSheet: View {
             .listRowBackground(Theme.card)
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
-            .navigationTitle(request.purpose == .done ? "Nice work" : "Update mileage")
+            .navigationTitle(titleText)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", role: .cancel, action: cancel)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(request.purpose == .done ? "Done" : "Save", action: save)
+                    Button(saveTitle, action: save)
                         .disabled(!isValid)
                 }
             }
         }
         .presentationDetents([.medium])
+    }
+
+    private var titleText: LocalizedStringKey {
+        switch request.purpose {
+        case .done: "Nice work"
+        case .update: "Update mileage"
+        }
+    }
+
+    private var saveTitle: LocalizedStringKey {
+        switch request.purpose {
+        case .done: "Done"
+        case .update: "Save"
+        }
     }
 
     private var footerText: LocalizedStringKey {

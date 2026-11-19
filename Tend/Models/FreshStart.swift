@@ -61,9 +61,6 @@ struct FreshStart {
         for move in moves {
             move.item.dueDate = move.newDate
         }
-        let days = Set(moves.map(\.newDate)).count
-        let plants = moves.count == 1 ? "1 plant" : "\(moves.count) plants"
-        let span = days == 1 ? "1 day" : "\(days) days"
-        return CareUndo(message: "Spread \(plants) over \(span).", restores: restores)
+        return CareUndo(message: String(localized: "Spread \(moves.count) plants over the next few days."), restores: restores)
     }
 }

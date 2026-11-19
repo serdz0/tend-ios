@@ -30,13 +30,13 @@ enum CareCategory: CaseIterable {
 
     var title: String {
         switch self {
-        case .plant: "Plants"
-        case .inspection: "Inspection"
-        case .insurance: "Insurance"
-        case .tyres: "Tyres"
-        case .service: "Servicing"
-        case .cleaning: "Cleaning"
-        case .other: "Other"
+        case .plant: String(localized: "Plants")
+        case .inspection: String(localized: "Inspection")
+        case .insurance: String(localized: "Insurance")
+        case .tyres: String(localized: "Tyres")
+        case .service: String(localized: "Servicing")
+        case .cleaning: String(localized: "Cleaning")
+        case .other: String(localized: "Other")
         }
     }
 
