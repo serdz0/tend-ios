@@ -32,21 +32,21 @@ enum SampleData {
                                    readingDate: today, kmPerYear: 12_000)
 
         let items = [
-            CareItem(name: "Car", kind: .car, task: CarTaskPreset.stk.taskName,
+            CareItem(name: "Family Skoda", kind: .car, task: CarTaskPreset.stk.taskName,
                      recurrence: Recurrence(count: 2, unit: .year), dueDate: due(in: -3)),
             history(plant(.monstera, dueIn: -1), .done, daysAgo: 8),
             history(plant(.fiddleLeafFig, dueIn: 0), .done, daysAgo: 7, hour: 18),
             history(history(plant(.basil, dueIn: 0), .done, daysAgo: 6), .snoozed, daysAgo: 1, hour: 8),
             history(plant(.peaceLily, dueIn: 4), .done, daysAgo: 3, hour: 20),
             history(plant(.snakePlant, dueIn: 9), .done, daysAgo: 5),
-            CareItem(name: "Car", kind: .car, task: CarTaskPreset.oilService.taskName,
+            CareItem(name: "Family Skoda", kind: .car, task: CarTaskPreset.oilService.taskName,
                      schedule: .distance(oil), dueDate: oil.dueDate(calendar: calendar)),
-            CareItem(name: "Car", kind: .car, task: CarTaskPreset.insurance.taskName,
+            CareItem(name: "Family Skoda", kind: .car, task: CarTaskPreset.insurance.taskName,
                      recurrence: Recurrence(count: 1, unit: .year), dueDate: due(in: 11)),
-            CareItem(name: "Car", kind: .car, task: CarTaskPreset.winterTyres.taskName,
+            CareItem(name: "Family Skoda", kind: .car, task: CarTaskPreset.winterTyres.taskName,
                      schedule: .yearly(month: 10, day: 31),
                      dueDate: Schedule.nextOccurrence(month: 10, day: 31, after: today, calendar: calendar)),
-            CareItem(name: "Car", kind: .car, task: CarTaskPreset.summerTyres.taskName,
+            CareItem(name: "Family Skoda", kind: .car, task: CarTaskPreset.summerTyres.taskName,
                      schedule: .yearly(month: 4, day: 1),
                      dueDate: Schedule.nextOccurrence(month: 4, day: 1, after: today, calendar: calendar)),
         ]

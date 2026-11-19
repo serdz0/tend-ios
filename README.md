@@ -4,6 +4,20 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 
 > Built with Claude Code from my requirements; I specify and review, I do not write the Swift by hand. Started November 2026. Sample data and made-up names only.
 
+## Screenshots
+
+Made-up sample data only. Taken in the iOS Simulator (iPhone 17, iOS 27).
+
+| Today | Calendar | My things |
+|---|---|---|
+| <img src="docs/screenshots/01-today.png" width="240"> | <img src="docs/screenshots/02-calendar.png" width="240"> | <img src="docs/screenshots/03-my-things.png" width="240"> |
+
+| Item detail | Dark mode | Czech |
+|---|---|---|
+| <img src="docs/screenshots/05-item-detail.png" width="240"> | <img src="docs/screenshots/07-today-dark.png" width="240"> | <img src="docs/screenshots/08-today-czech.png" width="240"> |
+
+More: [Journal](docs/screenshots/04-journal.png), [add form](docs/screenshots/06-add-form.png), [Ukrainian](docs/screenshots/09-today-ukrainian.png). A 30-second walkthrough: [docs/tend-demo.mp4](docs/tend-demo.mp4).
+
 ## What works now (Steps 1 to 3, plus the safety net)
 
 - **Today**: a greeting, one warm sentence about what is waiting, then "Waiting for you" (overdue), "For today" and "Coming up" (next 30 days).
@@ -60,4 +74,4 @@ Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting 
 ## Next
 
 4. Polish: icon, maybe a home-screen widget.
-5. Run on a real iPhone, screenshots, short screen recording.
+5. Run on a real iPhone. (Screenshots and a short recording are in `docs/`.)
