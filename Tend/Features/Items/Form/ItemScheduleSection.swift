@@ -17,19 +17,19 @@ struct ItemScheduleSection: View {
                         Text(unit.pluralName).tag(unit)
                     }
                 }
-                DatePicker("Next due", selection: $draft.firstDueDate, displayedComponents: .date)
+                DatePicker("Next time", selection: $draft.firstDueDate, displayedComponents: .date)
             } header: {
-                Text("Repeats")
+                Text("How often?")
             } footer: {
                 IntervalHint(draft: draft)
             }
         case .yearly:
             Section {
-                DatePicker("Due", selection: $draft.firstDueDate, displayedComponents: .date)
+                DatePicker("On", selection: $draft.firstDueDate, displayedComponents: .date)
             } header: {
-                Text("Repeats every year")
+                Text("Every year")
             } footer: {
-                Text("It comes round on this date every year, whenever you do it.")
+                Text("It comes round on this date every year, whether you do it early or a little late.")
             }
         case .distance:
             ItemMileageSection(draft: $draft)

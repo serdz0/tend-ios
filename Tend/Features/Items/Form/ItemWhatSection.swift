@@ -8,7 +8,7 @@ struct ItemWhatSection: View {
     var body: some View {
         Section {
             if !isEditing {
-                Picker("Kind", selection: $draft.kind) {
+                Picker("What are you adding?", selection: $draft.kind) {
                     ForEach(ItemKind.allCases) { kind in
                         Text(kind.title).tag(kind)
                     }
@@ -18,28 +18,28 @@ struct ItemWhatSection: View {
 
             switch draft.kind {
             case .plant:
-                Picker("Type of plant", selection: $draft.plantType) {
+                Picker("What kind of plant?", selection: $draft.plantType) {
                     ForEach(PlantType.allCases) { type in
                         Text(type.displayName).tag(type)
                     }
                 }
-                TextField("Name, such as Kitchen Monstera", text: $draft.name)
+                TextField("Give it a name, like Kitchen Monstera", text: $draft.name)
                     .textInputAutocapitalization(.words)
                     .accessibilityLabel("Plant name")
             case .car:
                 if !isEditing {
-                    Picker("Task", selection: $draft.carPreset) {
+                    Picker("What needs doing?", selection: $draft.carPreset) {
                         ForEach(CarTaskPreset.allCases) { preset in
                             Text(preset.displayName).tag(preset)
                         }
                     }
                 }
                 if draft.carPreset == .custom {
-                    TextField("Task, such as Replace wipers", text: $draft.customTask)
+                    TextField("What needs doing? For example, replace wipers", text: $draft.customTask)
                         .textInputAutocapitalization(.sentences)
                         .accessibilityLabel("Task name")
                 }
-                TextField("Car name", text: $draft.name)
+                TextField("Which car? For example, Family Skoda", text: $draft.name)
                     .textInputAutocapitalization(.words)
             }
         }

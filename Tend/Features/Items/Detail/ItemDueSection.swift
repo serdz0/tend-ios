@@ -33,14 +33,14 @@ struct ItemDueSection: View {
 
         Section {
             Button(action: onDone) {
-                Label("Mark done", systemImage: "checkmark.circle")
+                Label("Mark as done", systemImage: "checkmark.circle")
                     .labelStyle(.titleAndIcon)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
 
             Button(action: onSnooze) {
-                Label("Snooze one day", systemImage: "zzz")
+                Label("Snooze for a day", systemImage: "zzz")
                     .labelStyle(.titleAndIcon)
                     .frame(maxWidth: .infinity)
             }

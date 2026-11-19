@@ -12,25 +12,26 @@ struct TodayView: View {
 
     var body: some View {
         let sections = TodaySections(items: items, now: now)
+        let summary = CareSummary(items: items, now: now)
 
         NavigationStack {
             List {
-                TodayHeader(now: now)
+                TodayHeader(now: now, summary: summary)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
 
                 if !sections.hasWork {
                     ContentUnavailableView(
-                        "All done for today",
-                        systemImage: "checkmark.circle",
-                        description: Text("Nothing is waiting. Enjoy the day.")
+                        "You're all caught up",
+                        systemImage: "sun.max",
+                        description: Text("Your plants and your car are happy. Go and enjoy the day.")
                     )
                     .listRowBackground(Color.clear)
                 }
 
-                CareSection(title: "Overdue", items: sections.overdue, now: now,
+                CareSection(title: "Waiting for you", items: sections.overdue, now: now,
                             completing: completing, onDone: complete, onSnooze: snooze)
-                CareSection(title: "Today", items: sections.today, now: now,
+                CareSection(title: "For today", items: sections.today, now: now,
                             completing: completing, onDone: complete, onSnooze: snooze)
                 CareSection(title: "Coming up", items: sections.comingUp, now: now,
                             completing: completing, onDone: complete, onSnooze: snooze)

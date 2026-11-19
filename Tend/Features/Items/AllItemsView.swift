@@ -1,9 +1,12 @@
 import SwiftData
 import SwiftUI
 
+/// "My things": plants first, then each car, soonest due first within each group.
 struct AllItemsView: View {
     @Query private var items: [CareItem]
     @State private var isAdding = false
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var now = Date.now
 
     var body: some View {
         NavigationStack {
@@ -14,21 +17,25 @@ struct AllItemsView: View {
 
                 if items.isEmpty {
                     ContentUnavailableView {
-                        Label("Nothing here yet", systemImage: "leaf")
+                        Label("Let's add your first thing", systemImage: "leaf")
                     } description: {
-                        Text("Plants and car tasks you add will be listed here.")
+                        Text("Add a plant or a car task and Tend will remind you when it needs you.")
                     } actions: {
-                        Button("Add your first item", action: addItem)
+                        Button("Add something", action: addItem)
                             .buttonStyle(.borderedProminent)
                     }
                     .listRowBackground(Color.clear)
                 } else {
-                    Section {
-                        ForEach(items.sorted(using: KeyPathComparator(\.title, comparator: .localizedStandard))) { item in
-                            NavigationLink(value: item) {
-                                ItemRow(item: item)
+                    ForEach(ItemGroup.groups(from: items)) { group in
+                        Section {
+                            ForEach(group.items) { item in
+                                NavigationLink(value: item) {
+                                    ItemRow(item: item, now: now)
+                                }
+                                .listRowBackground(Theme.card)
                             }
-                            .listRowBackground(Theme.card)
+                        } header: {
+                            ItemGroupHeader(group: group)
                         }
                     }
                 }
@@ -39,6 +46,9 @@ struct AllItemsView: View {
             .navigationDestination(for: CareItem.self) { item in
                 ItemDetailView(item: item)
             }
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active { now = .now }
         }
         .sheet(isPresented: $isAdding) {
             ItemFormView()

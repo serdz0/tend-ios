@@ -20,15 +20,15 @@ struct ItemDetailView: View {
                 ItemHistorySection(item: item)
 
                 Section {
-                    Button("Delete item", systemImage: "trash", role: .destructive, action: askToDelete)
+                    Button("Remove from my things", systemImage: "trash", role: .destructive, action: askToDelete)
                         .confirmationDialog(
-                            "Delete \(item.title)?",
+                            "Remove \(item.title)?",
                             isPresented: $isConfirmingDelete,
                             titleVisibility: .visible
                         ) {
-                            Button("Delete", role: .destructive, action: delete)
+                            Button("Remove", role: .destructive, action: delete)
                         } message: {
-                            Text("Its history is deleted too. This can't be undone.")
+                            Text("Its history goes with it, and this can't be undone.")
                         }
                 }
                 .listRowBackground(Theme.card)

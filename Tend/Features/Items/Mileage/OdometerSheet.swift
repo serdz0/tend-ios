@@ -29,7 +29,7 @@ struct OdometerSheet: View {
 
                 if !isValid, let distance = request.item.distance {
                     Section {
-                        Label("The odometer can't be lower than at the last service (\(distance.lastServiceKm, format: .number) km).",
+                        Label("The odometer can't be lower than it was at the last service (\(distance.lastServiceKm, format: .number) km).",
                               systemImage: "exclamationmark.circle")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
@@ -40,7 +40,7 @@ struct OdometerSheet: View {
             .listRowBackground(Theme.card)
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
-            .navigationTitle(request.purpose == .done ? "Mark done" : "Update mileage")
+            .navigationTitle(request.purpose == .done ? "Nice work" : "Update mileage")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -58,9 +58,9 @@ struct OdometerSheet: View {
     private var footerText: LocalizedStringKey {
         switch request.purpose {
         case .done:
-            "Read the odometer now. The next service is counted from this reading."
+            "What does the odometer say right now? The next service is counted from this number."
         case .update:
-            "Tend assumes steady driving between readings, so a fresh reading makes the estimate more accurate."
+            "Tend assumes steady driving between readings, so a fresh number keeps the estimate sharp."
         }
     }
 

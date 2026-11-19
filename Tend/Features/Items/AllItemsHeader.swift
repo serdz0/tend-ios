@@ -1,16 +1,21 @@
 import SwiftUI
 
-/// "All items" in the serif title style, with the add button beside it.
+/// "My things" in the serif title style, a short welcome line, and the add button beside it.
 struct AllItemsHeader: View {
     let onAdd: () -> Void
 
     var body: some View {
-        HStack {
-            Text("All items")
-                .font(.screenTitle)
-                .accessibilityAddTraits(.isHeader)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
+                Text("My things")
+                    .font(.screenTitle)
+                    .accessibilityAddTraits(.isHeader)
+                Text("Everything you look after, all in one place.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
             Spacer()
-            Button("Add item", systemImage: "plus", action: onAdd)
+            Button("Add something", systemImage: "plus", action: onAdd)
                 .labelStyle(.iconOnly)
                 .font(.title2)
                 .buttonStyle(.borderless)

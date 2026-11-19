@@ -24,8 +24,8 @@ enum SampleData {
             return item
         }
 
-        // 61,300 km on the odometer today, last oil change at 47,000, about 12,000 km a year.
-        let oil = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 47_000, readingKm: 61_300,
+        // 61,700 km on the odometer today, last oil change at 47,000, about 12,000 km a year: due in about nine days.
+        let oil = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 47_000, readingKm: 61_700,
                                    readingDate: today, kmPerYear: 12_000)
 
         return [
@@ -39,7 +39,7 @@ enum SampleData {
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.oilService.taskName,
                      schedule: .distance(oil), dueDate: oil.dueDate(calendar: calendar)),
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.insurance.taskName,
-                     recurrence: Recurrence(count: 1, unit: .year), dueDate: due(in: 34)),
+                     recurrence: Recurrence(count: 1, unit: .year), dueDate: due(in: 11)),
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.winterTyres.taskName,
                      schedule: .yearly(month: 10, day: 31),
                      dueDate: Schedule.nextOccurrence(month: 10, day: 31, after: today, calendar: calendar)),

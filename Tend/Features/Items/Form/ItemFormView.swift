@@ -30,7 +30,7 @@ struct ItemFormView: View {
             .listRowBackground(Theme.card)
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
-            .navigationTitle(editing == nil ? "New item" : "Edit item")
+            .navigationTitle(editing == nil ? "Add something" : "Edit details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

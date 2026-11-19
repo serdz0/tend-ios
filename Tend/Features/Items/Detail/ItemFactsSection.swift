@@ -6,7 +6,7 @@ struct ItemFactsSection: View {
     let onUpdateMileage: () -> Void
 
     var body: some View {
-        Section("Details") {
+        Section("Good to know") {
             LabeledContent("Repeats") {
                 ScheduleText(schedule: item.schedule)
             }
@@ -18,7 +18,7 @@ struct ItemFactsSection: View {
             }
 
             if let distance = item.distance {
-                LabeledContent("Odometer (estimated)") {
+                LabeledContent("Odometer (estimate)") {
                     Text("\(distance.estimatedKm(on: .now), format: .number) km")
                 }
                 LabeledContent("Last service at") {

@@ -12,12 +12,12 @@ struct ItemProblemText: View {
 
     private var message: LocalizedStringKey {
         switch problem {
-        case .missingName: "Give it a name."
-        case .missingTask: "Say what the task is."
-        case .intervalTooSmall: "Repeat at least every 1."
-        case .serviceIntervalTooSmall: "Service every at least 1 km."
-        case .drivingPerYearTooSmall: "Enter about how many km you drive per year."
-        case .mileageBeforeLastService: "The odometer now can't be lower than at the last service."
+        case .missingName: "It needs a name, so you can spot it later."
+        case .missingTask: "What needs doing? Add a short task name."
+        case .intervalTooSmall: "Pick a number of 1 or more."
+        case .serviceIntervalTooSmall: "Pick a distance of at least 1 km."
+        case .drivingPerYearTooSmall: "Roughly how many km do you drive in a year?"
+        case .mileageBeforeLastService: "The odometer can't be lower than it was at the last service."
         }
     }
 }

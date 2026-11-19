@@ -11,9 +11,9 @@ struct ItemMileageSection: View {
             KilometresField(title: "Odometer now", value: $draft.currentKm)
             KilometresField(title: "Driven per year", value: $draft.kmPerYear)
         } header: {
-            Text("Mileage")
+            Text("Kilometres")
         } footer: {
-            Text("The phone can't read your odometer. Tend estimates the due date from how far you drive in a year, and re-estimates whenever you enter a new reading.")
+            Text("Your phone can't read the odometer, so Tend estimates the due date from how far you drive in a year. Give it a fresh reading now and then and the estimate gets sharper.")
         }
     }
 }

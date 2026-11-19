@@ -4,15 +4,18 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 
 > Built with Claude Code from my requirements; I specify and review, I do not write the Swift by hand. Started November 2026. Sample data and made-up names only.
 
-## What works now (Step 1)
+## What works now (Steps 1 and 2)
 
-- **Today** screen: overdue items first, then due today, then coming up in the next 30 days.
+- **Today**: a greeting, one warm sentence about what is waiting, then "Waiting for you" (overdue), "For today" and "Coming up" (next 30 days).
 - Tap the circle to mark an item done. Swipe right to mark done, swipe left to snooze one day.
-- Next due date counts from the day you mark it done, so a plant watered late is not due again tomorrow.
+- **Calendar**: a short month grid with soft coloured dots, a summary of what needs doing, and the plan for the day you pick. Future dates are projected from each schedule.
+- **My things**: plants first, then each car, soonest due first. Add, edit and delete items; plants come with a type that sets the watering interval.
+- Car presets: STK every 2 years, insurance yearly, winter tyres by 31 October, summer tyres around 1 April, oil service every 15,000 km (estimated from your odometer readings).
+- **Journal**: everything marked done or snoozed, grouped by day.
 - Light and dark mode. Works at the largest text size.
-- Seven made-up sample items load on the first run of a debug build.
+- Made-up sample items load on the first run of a debug build.
 
-Not built yet: adding and editing items, reminders as notifications, history, app icon.
+Not built yet: reminders as notifications, app icon, widget.
 
 ## Run it
 
@@ -30,7 +33,9 @@ SwiftUI, SwiftData (local storage), Swift Testing. Minimum iOS 26. iPhone only. 
 
 ## Look
 
-Direction "Garden notebook": warm paper background, moss green for actions, terracotta for overdue, serif screen titles. Plants and car tasks are told apart by icon shape, and overdue is always written in words, never colour alone.
+Direction "Garden notebook": warm paper background, moss green for actions, terracotta for overdue, serif screen titles. The calendar adds five muted tones (sage, dusk, heather, honey, stone), one per sort of task. Every task type also has its own icon, and overdue is always written in words, so colour is never the only clue.
+
+Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting for you", "A quiet day. Nothing planned."
 
 ## Skills used
 
@@ -38,7 +43,6 @@ Direction "Garden notebook": warm paper background, moss green for actions, terr
 
 ## Next
 
-2. Add and edit items (plants and car presets), history, item detail.
 3. Local notifications with Done and Snooze buttons.
-4. Polish: icon, empty states, maybe a home-screen widget.
+4. Polish: icon, maybe a home-screen widget.
 5. Run on a real iPhone, screenshots, short screen recording.

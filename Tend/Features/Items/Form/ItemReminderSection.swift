@@ -8,7 +8,7 @@ struct ItemReminderSection: View {
         Section {
             DatePicker("Remind me at", selection: $draft.reminderDate, displayedComponents: .hourAndMinute)
         } footer: {
-            Text("The time of day for this item's reminder.")
+            Text("The time of day for a gentle nudge.")
         }
     }
 }

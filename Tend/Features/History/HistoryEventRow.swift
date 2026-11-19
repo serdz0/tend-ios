@@ -21,7 +21,7 @@ struct HistoryEventRow: View {
 
             VStack(alignment: .leading) {
                 if showsItemTitle {
-                    Text(event.item?.title ?? "Deleted item")
+                    Text(event.item?.title ?? "Something you removed")
                     Text("\(event.kind.title) at \(event.date, format: .dateTime.hour().minute())")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)

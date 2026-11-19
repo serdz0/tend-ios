@@ -6,13 +6,16 @@ struct RootView: View {
 
     var body: some View {
         TabView(selection: $selection) {
-            Tab("Today", systemImage: "calendar", value: AppTab.today) {
+            Tab("Today", systemImage: "sun.max", value: AppTab.today) {
                 TodayView()
             }
-            Tab("All items", systemImage: "list.bullet", value: AppTab.items) {
+            Tab("Calendar", systemImage: "calendar", value: AppTab.calendar) {
+                CalendarView()
+            }
+            Tab("My things", systemImage: "tray.full", value: AppTab.items) {
                 AllItemsView()
             }
-            Tab("History", systemImage: "clock.arrow.circlepath", value: AppTab.history) {
+            Tab("Journal", systemImage: "book", value: AppTab.history) {
                 HistoryView()
             }
         }

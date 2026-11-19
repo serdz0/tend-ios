@@ -16,9 +16,9 @@ struct HistoryView: View {
 
                 if days.isEmpty {
                     ContentUnavailableView(
-                        "No history yet",
-                        systemImage: "clock.arrow.circlepath",
-                        description: Text("Things you mark done or snooze will appear here.")
+                        "Your journal is empty",
+                        systemImage: "book",
+                        description: Text("Mark something done and it will land here, a small record of your care.")
                     )
                     .listRowBackground(Color.clear)
                 }

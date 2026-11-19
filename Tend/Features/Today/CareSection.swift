@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// One group on the Today screen: "Overdue", "Today" or "Coming up".
+/// One group on the Today screen: "Waiting for you", "For today" or "Coming up".
 struct CareSection: View {
     let title: LocalizedStringKey
     let items: [CareItem]

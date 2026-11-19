@@ -11,8 +11,8 @@ Honest dating: started November 2026. Never present it as older. Public repo onl
 ## Plan (approved)
 
 0. Mockups (done, direction A chosen).
-1. Skeleton with sample data: DONE. Today screen, SwiftData models, due-date logic with 12 tests.
-2. Add and edit items (plant and car presets), item detail, history.
+1. Skeleton with sample data: DONE. Today screen, SwiftData models, due-date logic.
+2. Add and edit items, item detail, history: DONE. Plant types, car presets, three schedule types (interval, yearly, by km), calendar tab, "My things" grouping, warm copy pass. 107 tests.
 3. Local notifications with Done and Snooze actions, tested in the simulator.
 4. Polish: app icon, empty states, maybe a home-screen widget.
 5. Run on his real iPhone, README screenshots, short screen recording, public repo.
@@ -27,6 +27,10 @@ Limits he knows: free Apple signing expires the on-device app every 7 days (paid
 - Each item repeats on a fixed interval and reminds at one time of day (default 09:00).
 - History keeps both Done and Snoozed entries.
 - One accent colour (moss green). Terracotta for overdue, always with the word "overdue". Plants and car tasks differ by icon shape (leaf, car), not colour.
+- Exception, the Calendar tab only: five muted category colours (Sage, Dusk, Heather, Honey, Stone), each paired with its own icon (`CareCategory`). Never bright, never the only clue.
+- Voice: friendly and warm, short sentences, plain words ("Good morning", "Waiting for you", "Let's add your first thing"). Never scolding. Overdue still says "overdue".
+- Tabs: Today, Calendar, My things (plants first, then each car, soonest due first), Journal (was History).
+- Calendar: short month grid, summary under it (overdue / today / next 7 days), agenda for the picked day. Future entries are projections assuming each task is done on its due day; an overdue task projects from today. At accessibility text sizes the grid becomes a list of days.
 - Screen titles in serif (New York) built on text styles; everything else uses system text styles so Dynamic Type works. At accessibility text sizes the row icon is hidden.
 - Empty states use `ContentUnavailableView`.
 - Signature detail on Today: the circle fills with a tick for a moment, then the row leaves.
