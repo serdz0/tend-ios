@@ -42,6 +42,12 @@ struct CareSummaryTests {
         #expect(summary([-1, 4]).headline == "One little thing needs you today.")
     }
 
+    @Test func anEmptyAppWelcomesYouInsteadOfSayingAllIsWell() {
+        #expect(summary([]).headline == "Welcome to Tend. Let's add your first thing.")
+        #expect(summary([]).hasNothingYet)
+        #expect(!summary([20]).hasNothingYet)
+    }
+
     @Test func severalThingsNeedYou() {
         #expect(summary([-1, 0, 0]).headline == "3 things need you today.")
     }

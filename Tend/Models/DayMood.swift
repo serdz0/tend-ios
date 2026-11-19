@@ -17,6 +17,10 @@ struct DayMood: Equatable {
     let kind: Kind
 
     init(items: [CareItem], now: Date = .now, calendar: Calendar = .current) {
+        guard !items.isEmpty else {
+            kind = .cheerful
+            return
+        }
         var waiting = 0
         var finishedToday = false
         for item in items {

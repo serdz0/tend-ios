@@ -29,7 +29,10 @@ struct DayMoodTests {
 
     @Test func nothingWaitingAndNothingDoneIsResting() {
         #expect(mood([plant("A", dueInDays: 3)]).kind == .resting)
-        #expect(mood([]).kind == .resting)
+    }
+
+    @Test func anEmptyAppWavesHello() {
+        #expect(mood([]).kind == .cheerful)
     }
 
     @Test func oneOrTwoWaitingIsCheerful() {

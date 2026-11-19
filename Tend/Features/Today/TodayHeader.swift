@@ -17,7 +17,8 @@ struct TodayHeader: View {
                 VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                     Text(now, format: .dateTime.weekday(.wide).day().month(.wide))
                         .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                        // Darker than plain secondary, which is too faint on the tinted sky.
+                        .foregroundStyle(Color.primary.opacity(0.72))
                     Text(summary.headline)
                         .font(.title3)
                         .fontDesign(.serif)

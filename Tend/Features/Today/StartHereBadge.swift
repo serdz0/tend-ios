@@ -5,6 +5,7 @@ struct StartHereBadge: View {
     var body: some View {
         HStack(spacing: Theme.Spacing.xs) {
             Image(systemName: "arrow.right")
+                .accessibilityHidden(true)
             Text("Start here")
         }
             .font(.caption.weight(.semibold))

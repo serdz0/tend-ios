@@ -80,6 +80,9 @@ final class ReminderCenter {
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
             try? await center.add(UNNotificationRequest(identifier: plan.identifier, content: content, trigger: trigger))
         }
+        #if DEBUG
+        NSLog("Tend scheduled %d reminders: %@", plans.count, plans.prefix(3).map { "\($0.title) at \($0.fireDate)" }.joined(separator: "; "))
+        #endif
     }
 
     #if DEBUG

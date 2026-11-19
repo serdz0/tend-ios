@@ -8,3 +8,4 @@ build/
 xcuserdata/
 *.xcuserstate
 DerivedData/
+build-release/

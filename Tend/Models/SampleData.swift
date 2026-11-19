@@ -31,7 +31,7 @@ enum SampleData {
         let oil = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 47_000, readingKm: 61_700,
                                    readingDate: today, kmPerYear: 12_000)
 
-        return [
+        let items = [
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.stk.taskName,
                      recurrence: Recurrence(count: 2, unit: .year), dueDate: due(in: -3)),
             history(plant(.monstera, dueIn: -1), .done, daysAgo: 8),
@@ -50,6 +50,17 @@ enum SampleData {
                      schedule: .yearly(month: 4, day: 1),
                      dueDate: Schedule.nextOccurrence(month: 4, day: 1, after: today, calendar: calendar)),
         ]
+
+        // Launch with `-itemReminderInMinutes 2` to give every sample item a reminder that many
+        // minutes from now (for trying "a note for each thing" without waiting until 10:30).
+        let minutes = UserDefaults.standard.integer(forKey: "itemReminderInMinutes")
+        if minutes > 0 {
+            let soon = calendar.dateComponents([.hour, .minute], from: now.addingTimeInterval(Double(minutes) * 60))
+            for item in items {
+                item.reminderTime = TimeOfDay(hour: soon.hour ?? 10, minute: soon.minute ?? 30)
+            }
+        }
+        return items
     }
 
     /// Adds the sample items the first time a debug build runs.

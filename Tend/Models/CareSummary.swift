@@ -6,6 +6,8 @@ struct CareSummary {
     let today: Int
     /// Due from tomorrow up to a week ahead.
     let thisWeek: Int
+    /// True when there are no items at all, so "all caught up" would not be true, just empty.
+    let hasNothingYet: Bool
 
     init(items: [CareItem], now: Date = .now, calendar: Calendar = .current) {
         var overdue = 0
@@ -22,6 +24,7 @@ struct CareSummary {
         self.overdue = overdue
         self.today = today
         self.thisWeek = thisWeek
+        self.hasNothingYet = items.isEmpty
     }
 
     /// Overdue plus due today: what is waiting right now.
@@ -30,7 +33,10 @@ struct CareSummary {
     }
 
     var headline: String {
-        switch (needsAttention, thisWeek) {
+        if hasNothingYet {
+            return "Welcome to Tend. Let's add your first thing."
+        }
+        return switch (needsAttention, thisWeek) {
         case (0, 0):
             "Nothing needs you this week. Enjoy the calm."
         case (0, 1):

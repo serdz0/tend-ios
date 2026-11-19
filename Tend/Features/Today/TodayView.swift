@@ -24,6 +24,7 @@ struct TodayView: View {
     @State private var snoozeCheck: CareItem?
     @State private var editing: CareItem?
     @State private var showsReminderSettings = false
+    @State private var isAdding = false
 
     var body: some View {
         let sections = TodaySections(items: items, now: now)
@@ -70,7 +71,17 @@ struct TodayView: View {
                     .listRowBackground(Theme.card)
                 }
 
-                if !sections.hasWork {
+                if items.isEmpty {
+                    ContentUnavailableView {
+                        Label("Let's add your first thing", systemImage: "leaf")
+                    } description: {
+                        Text("Add a plant or a car task and Tend will remind you when it needs you.")
+                    } actions: {
+                        Button("Add something", action: addItem)
+                            .buttonStyle(.borderedProminent)
+                    }
+                    .listRowBackground(Color.clear)
+                } else if !sections.hasWork {
                     ContentUnavailableView(
                         "You're all caught up",
                         systemImage: "sun.max",
@@ -118,6 +129,7 @@ struct TodayView: View {
         .onChange(of: items.count) { undo = nil }
         .sheet(item: $odometerRequest, content: OdometerSheet.init)
         .sheet(item: $editing) { ItemFormView(editing: $0) }
+        .sheet(isPresented: $isAdding) { ItemFormView() }
         .sheet(isPresented: $showsReminderSettings) { ReminderSettingsView() }
         // A reminder's Done button for a task that repeats by distance lands here to ask for the odometer.
         .task(id: reminders.itemToFinish) {
@@ -165,6 +177,10 @@ struct TodayView: View {
             undo = nil
             snoozeCheck = nil
         }
+    }
+
+    private func addItem() {
+        isAdding = true
     }
 
     private func openReminderSettings() {
