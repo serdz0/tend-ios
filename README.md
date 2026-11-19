@@ -18,7 +18,7 @@ Made-up sample data only. Taken in the iOS Simulator (iPhone 17, iOS 27).
 
 More: [Journal](docs/screenshots/04-journal.png), [add form](docs/screenshots/06-add-form.png), [Ukrainian](docs/screenshots/09-today-ukrainian.png). A 30-second walkthrough: [docs/tend-demo.mp4](docs/tend-demo.mp4).
 
-## What works now (Steps 1 to 3, plus the safety net)
+## What works now
 
 - **Today**: a greeting, one warm sentence about what is waiting, then "Waiting for you" (overdue), "For today" and "Coming up" (next 30 days).
 - Tap the circle to mark an item done. Swipe right to mark done, swipe left to snooze one day.
@@ -45,7 +45,19 @@ More: [Journal](docs/screenshots/04-journal.png), [add form](docs/screenshots/06
 - **Languages**: English, Czech and Ukrainian, with proper plural forms in each (1 den, 2 dny, 5 dní). Follows the phone's language. Translations were written by Claude and are waiting for a native read.
 - **App icon**: the sprout, in light, dark and tinted versions. Drawn by a script (`tools/make-icon.swift`), so it can be changed and redrawn in seconds.
 
-Not built yet: widget.
+Not built yet: a home-screen widget, and backup and restore.
+
+## How this was built
+
+I am a product owner, not a developer. My part: the requirements, the product decisions, the plan for each step, and testing the result. Claude Code wrote the Swift. The routine, step by step:
+
+1. Mockups first, then one direction chosen ("Garden notebook").
+2. A short plan for each step, approved by me before any code.
+3. Logic written test-first (227 tests, fixed dates, no real data), then the screens.
+4. Each step checked in the simulator (light, dark, largest text, Czech, Ukrainian) before it counted as done.
+5. One commit per working step. The history shows the order things were built in.
+
+The ADHD-friendly choices (undo without a timer, a gentle "fresh start" for a pile of overdue plants, one calm morning note instead of many pings) are listed with how much evidence is behind each in [docs/design-principles.md](docs/design-principles.md). Tend is a support tool for remembering chores, not a treatment, and makes no claims about outcomes. It has no analytics and no accounts. It has no real users yet: it started in November 2026 and so far has only run in the simulator.
 
 ## Run it
 
@@ -73,8 +85,9 @@ Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting 
 
 ## Next
 
-4. Polish: icon, maybe a home-screen widget.
-5. Run on a real iPhone. (Screenshots and a short recording are in `docs/`.)
+1. Run it on my own iPhone and use it for real. With a free Apple account the app has to be reinstalled from Xcode every 7 days; the data stays when it is reinstalled over the old copy.
+2. Backup and restore to a file, as a safety net for that.
+3. A native speaker's read of the Czech and Ukrainian texts (written by Claude, not yet reviewed).
 
 ## Licence
 
