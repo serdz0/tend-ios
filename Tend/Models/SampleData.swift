@@ -9,22 +9,36 @@ enum SampleData {
         func due(in days: Int) -> Date {
             calendar.date(byAdding: .day, value: days, to: today) ?? today
         }
+        func plant(_ type: PlantType, name: String? = nil, dueIn days: Int) -> CareItem {
+            CareItem(
+                name: name ?? type.defaultName, kind: .plant, task: "Water",
+                schedule: .interval(Recurrence(count: type.wateringDays ?? 7, unit: .day)),
+                dueDate: due(in: days), plantType: type
+            )
+        }
+
+        // 61,300 km on the odometer today, last oil change at 47,000, about 12,000 km a year.
+        let oil = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 47_000, readingKm: 61_300,
+                                   readingDate: today, kmPerYear: 12_000)
 
         return [
-            CareItem(name: "Car", kind: .car, task: "STK inspection",
+            CareItem(name: "Car", kind: .car, task: CarTaskPreset.stk.taskName,
                      recurrence: Recurrence(count: 2, unit: .year), dueDate: due(in: -3)),
-            CareItem(name: "Monstera", kind: .plant, task: "Water",
-                     recurrence: Recurrence(count: 7, unit: .day), dueDate: due(in: -1)),
-            CareItem(name: "Fiddle leaf fig", kind: .plant, task: "Water",
-                     recurrence: Recurrence(count: 7, unit: .day), dueDate: due(in: 0)),
-            CareItem(name: "Basil", kind: .plant, task: "Water",
-                     recurrence: Recurrence(count: 3, unit: .day), dueDate: due(in: 0)),
-            CareItem(name: "Peace lily", kind: .plant, task: "Water",
-                     recurrence: Recurrence(count: 10, unit: .day), dueDate: due(in: 4)),
-            CareItem(name: "Car", kind: .car, task: "Winter tyre swap",
-                     recurrence: Recurrence(count: 6, unit: .month), dueDate: due(in: 12)),
-            CareItem(name: "Car", kind: .car, task: "Insurance renewal",
+            plant(.monstera, dueIn: -1),
+            plant(.fiddleLeafFig, dueIn: 0),
+            plant(.basil, dueIn: 0),
+            plant(.peaceLily, dueIn: 4),
+            plant(.snakePlant, dueIn: 9),
+            CareItem(name: "Car", kind: .car, task: CarTaskPreset.oilService.taskName,
+                     schedule: .distance(oil), dueDate: oil.dueDate(calendar: calendar)),
+            CareItem(name: "Car", kind: .car, task: CarTaskPreset.insurance.taskName,
                      recurrence: Recurrence(count: 1, unit: .year), dueDate: due(in: 34)),
+            CareItem(name: "Car", kind: .car, task: CarTaskPreset.winterTyres.taskName,
+                     schedule: .yearly(month: 10, day: 31),
+                     dueDate: Schedule.nextOccurrence(month: 10, day: 31, after: today, calendar: calendar)),
+            CareItem(name: "Car", kind: .car, task: CarTaskPreset.summerTyres.taskName,
+                     schedule: .yearly(month: 4, day: 1),
+                     dueDate: Schedule.nextOccurrence(month: 4, day: 1, after: today, calendar: calendar)),
         ]
     }
 

@@ -1,8 +1,10 @@
 import SwiftUI
 
 /// "3 days overdue", "Today", "in 12 days". Words, so it never relies on colour alone.
+/// For tasks that repeat by distance the day is an estimate, so it says "in about".
 struct DueStatusText: View {
     let status: DueStatus
+    var isEstimate = false
 
     var body: some View {
         switch status {
@@ -11,7 +13,11 @@ struct DueStatusText: View {
         case .dueToday:
             Text("Today")
         case .upcoming(let days):
-            Text("In ^[\(days) day](inflect: true)")
+            if isEstimate {
+                Text("In about ^[\(days) day](inflect: true)")
+            } else {
+                Text("In ^[\(days) day](inflect: true)")
+            }
         }
     }
 }

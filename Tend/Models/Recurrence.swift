@@ -8,6 +8,16 @@ nonisolated enum RecurrenceUnit: String, Codable, CaseIterable, Identifiable {
 
     var id: Self { self }
 
+    /// For the unit picker.
+    var pluralName: String {
+        switch self {
+        case .day: "Days"
+        case .week: "Weeks"
+        case .month: "Months"
+        case .year: "Years"
+        }
+    }
+
     var calendarComponent: Calendar.Component {
         switch self {
         case .day: .day

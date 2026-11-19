@@ -16,6 +16,7 @@ struct CareSection: View {
                     CareRow(
                         item: item,
                         status: item.status(now: now),
+                        now: now,
                         isCompleting: completing.contains(item.id),
                         onDone: { onDone(item) }
                     )

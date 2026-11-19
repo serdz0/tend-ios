@@ -97,6 +97,16 @@ struct ItemDraftTests {
         #expect(draft.serviceIntervalKm == 15_000)
     }
 
+    @Test func theReminderPickerReadsAndWritesTheReminderTime() {
+        var draft = newDraft()
+        // The picker works in the phone's own calendar, so the test does too.
+        let sevenThirty = Calendar.current.date(bySettingHour: 7, minute: 30, second: 0, of: .now)!
+        draft.reminderDate = sevenThirty
+        #expect(draft.reminderTime == TimeOfDay(hour: 7, minute: 30))
+        #expect(Calendar.current.component(.hour, from: draft.reminderDate) == 7)
+        #expect(Calendar.current.component(.minute, from: draft.reminderDate) == 30)
+    }
+
     // MARK: Checks before saving
 
     @Test func aPlantNeedsAName() {

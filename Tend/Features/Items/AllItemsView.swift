@@ -2,32 +2,46 @@ import SwiftData
 import SwiftUI
 
 struct AllItemsView: View {
-    @Query(sort: \CareItem.name) private var items: [CareItem]
+    @Query private var items: [CareItem]
+    @State private var isAdding = false
 
     var body: some View {
         NavigationStack {
-            List(items) { item in
-                VStack(alignment: .leading) {
-                    Text(item.title)
-                    ScheduleText(schedule: item.schedule)
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                .listRowBackground(Theme.card)
-            }
-            .overlay {
+            List {
+                AllItemsHeader(onAdd: addItem)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+
                 if items.isEmpty {
-                    ContentUnavailableView(
-                        "Nothing here yet",
-                        systemImage: "leaf",
-                        description: Text("Plants and car tasks you add will be listed here.")
-                    )
+                    ContentUnavailableView {
+                        Label("Nothing here yet", systemImage: "leaf")
+                    } description: {
+                        Text("Plants and car tasks you add will be listed here.")
+                    } actions: {
+                        Button("Add your first item", action: addItem)
+                            .buttonStyle(.borderedProminent)
+                    }
+                    .listRowBackground(Color.clear)
+                } else {
+                    Section {
+                        ForEach(items.sorted(using: KeyPathComparator(\.title, comparator: .localizedStandard))) { item in
+                            ItemRow(item: item)
+                                .listRowBackground(Theme.card)
+                        }
+                    }
                 }
             }
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
-            .navigationTitle("All items")
+            .toolbarVisibility(.hidden, for: .navigationBar)
         }
+        .sheet(isPresented: $isAdding) {
+            ItemFormView()
+        }
+    }
+
+    private func addItem() {
+        isAdding = true
     }
 }
 

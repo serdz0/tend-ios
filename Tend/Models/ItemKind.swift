@@ -7,6 +7,13 @@ nonisolated enum ItemKind: String, Codable, CaseIterable, Identifiable {
 
     var id: Self { self }
 
+    var title: String {
+        switch self {
+        case .plant: "Plant"
+        case .car: "Car"
+        }
+    }
+
     /// SF Symbol that tells plants and car tasks apart without relying on colour.
     var symbolName: String {
         switch self {

@@ -3,6 +3,7 @@ import SwiftUI
 struct CareRow: View {
     let item: CareItem
     let status: DueStatus
+    let now: Date
     let isCompleting: Bool
     let onDone: () -> Void
 
@@ -21,9 +22,14 @@ struct CareRow: View {
 
             VStack(alignment: .leading) {
                 Text(item.title)
-                DueStatusText(status: status)
+                DueStatusText(status: status, isEstimate: item.distance != nil)
                     .font(.subheadline)
                     .foregroundStyle(status.isOverdue ? Theme.overdue : Color.secondary)
+                if let distance = item.distance {
+                    KilometresLeftText(distance: distance, now: now)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
             }
 
             Spacer()

@@ -78,6 +78,12 @@ struct ItemDraft {
 
     // MARK: What the form shows
 
+    /// The reminder time as a date, for a time picker. Only the hour and minute matter.
+    var reminderDate: Date {
+        get { reminderTime.date(on: .now) }
+        set { reminderTime = TimeOfDay(date: newValue) }
+    }
+
     var style: Style {
         guard kind == .car else { return .interval }
         switch carPreset.scheduleStyle {
