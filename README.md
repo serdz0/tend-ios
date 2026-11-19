@@ -57,7 +57,7 @@ I am a product owner, not a developer. My part: the requirements, the product de
 4. Each step checked in the simulator (light, dark, largest text, Czech, Ukrainian) before it counted as done.
 5. One commit per working step. The history shows the order things were built in.
 
-The ADHD-friendly choices (undo without a timer, a gentle "fresh start" for a pile of overdue plants, one calm morning note instead of many pings) are listed with how much evidence is behind each in [docs/design-principles.md](docs/design-principles.md). Tend is a support tool for remembering chores, not a treatment, and makes no claims about outcomes. It has no analytics and no accounts. It has no real users yet: it started in November 2026 and so far has only run in the simulator.
+The ADHD-friendly choices (undo without a timer, a gentle "fresh start" for a pile of overdue plants, one calm morning note instead of many pings) are listed with how much evidence is behind each in [docs/design-principles.md](docs/design-principles.md). Tend is a support tool for remembering chores, not a treatment, and makes no claims about outcomes. It has no analytics and no accounts. It started in November 2026. Two other people have tried it on their own iPhones, one for several days; after their feedback I changed a counterintuitive layout and a wrong seasonality display. Beyond those two testers it has no users.
 
 ## Run it
 
@@ -85,7 +85,7 @@ Voice: friendly and warm, short sentences, no nagging. "Good morning", "Waiting 
 
 ## Next
 
-1. Run it on my own iPhone and use it for real. With a free Apple account the app has to be reinstalled from Xcode every 7 days; the data stays when it is reinstalled over the old copy.
+1. Longer trials on real iPhones with a few more people. With a free Apple account the app has to be reinstalled from Xcode every 7 days; the data stays when it is reinstalled over the old copy.
 2. Backup and restore to a file, as a safety net for that.
 3. A native speaker's read of the Czech and Ukrainian texts (written by Claude, not yet reviewed).
 
