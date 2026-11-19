@@ -13,6 +13,7 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - Car presets, in three groups. Deadlines: STK every 2 years, insurance, highway vignette, first-aid kit check (yearly). Servicing: oil service every 15,000 km (estimated from your odometer readings), brake fluid every 2 years, cabin filter and wipers yearly, battery check each 15 October, winter tyres by 31 October, summer tyres around 1 April. Routine care: wash the car and clean the interior weekly, check tyre pressure monthly.
 - Routine care never goes overdue: a missed wash is simply there to do when you are ready, and shows in the morning note only on its own day.
 - More plant types with starting watering days from general care guides (dracaena, dipladenia, campanula, camellia, strelitzia, plus the earlier ones). Dipladenia, dracaena, strelitzia and ZZ plant **follow the seasons by themselves** (northern hemisphere: summer April to September, spring/autumn March and October, winter November to February). Dipladenia, for example: every 4 days in summer, 7 in spring or autumn, 14 in winter. Switch "Adjust for the seasons" off to set your own. The new rhythm applies from the next watering. Other plants carry a short season tip. Pot, light and season change the real need, so it is always editable.
+- **A little playfulness**: a sprout mascot on Today whose face follows the day (relaxed when nothing waits, arms up when a lot does, cheering when you finish everything; never sad, never scolding), a soft sky colour behind the greeting that follows the time of day, a **Start here** label on the one thing to begin with when two or more are waiting, and a springy tick with a few little leaves and a buzz when you finish something. The leaves and buzz can be switched off under "Little extras", and Reduce Motion turns the movement off.
 - **Journal**: everything marked done or snoozed, grouped by day.
 - Light and dark mode. Works at the largest text size.
 - **Reminders**: a notification on the due day at 10:30 (changeable per item), with **Done** and **Snooze for a day** buttons. For oil service, Done opens the app to ask for the odometer. Tend asks permission from a friendly card on Today, not at launch. One reminder per item, no repeats.
@@ -26,7 +27,7 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - **How Tend talks to you**: one sheet (bottom of Today) with every switch above.
 - Made-up sample items load on the first run of a debug build.
 
-Not built yet: app icon, widget.
+Not built yet: app icon (next, using the same sprout), widget.
 
 ## Run it
 

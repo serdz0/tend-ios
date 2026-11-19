@@ -6,6 +6,7 @@ struct CareSection: View {
     let items: [CareItem]
     let now: Date
     let completing: Set<UUID>
+    var startHereID: UUID?
     let onDone: (CareItem) -> Void
     let onSnooze: (CareItem) -> Void
 
@@ -18,6 +19,7 @@ struct CareSection: View {
                         status: item.status(now: now),
                         now: now,
                         isCompleting: completing.contains(item.id),
+                        isStartHere: item.id == startHereID,
                         onDone: { onDone(item) }
                     )
                     .listRowBackground(Theme.card)

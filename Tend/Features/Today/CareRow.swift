@@ -5,8 +5,11 @@ struct CareRow: View {
     let status: DueStatus
     let now: Date
     let isCompleting: Bool
+    var isStartHere = false
     let onDone: () -> Void
 
+    @AppStorage("playfulExtras") private var playfulExtras = true
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ScaledMetric(relativeTo: .title3) private var iconWidth = Theme.Spacing.l
 
@@ -21,6 +24,9 @@ struct CareRow: View {
             }
 
             VStack(alignment: .leading) {
+                if isStartHere {
+                    StartHereBadge()
+                }
                 Text(item.title)
                 DueStatusText(status: status, isEstimate: item.distance != nil)
                     .font(.subheadline)
@@ -39,6 +45,16 @@ struct CareRow: View {
                     .labelStyle(.iconOnly)
                     .font(.title)
                     .contentTransition(.symbolEffect(.replace))
+                    .scaleEffect(isCompleting && playfulExtras && !reduceMotion ? 1.2 : 1)
+                    .animation(.spring(duration: 0.4, bounce: 0.55), value: isCompleting)
+            }
+            .overlay {
+                if playfulExtras, !reduceMotion {
+                    LeafBurst(isActive: isCompleting)
+                }
+            }
+            .sensoryFeedback(.success, trigger: isCompleting) { _, finished in
+                finished && playfulExtras
             }
             .buttonStyle(.borderless)
             .frame(minWidth: Theme.minimumTapSize, minHeight: Theme.minimumTapSize)

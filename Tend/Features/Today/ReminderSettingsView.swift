@@ -6,6 +6,7 @@ struct ReminderSettingsView: View {
     @Environment(ReminderCenter.self) private var reminders
     @Environment(\.dismiss) private var dismiss
     @Environment(\.openURL) private var openURL
+    @AppStorage("playfulExtras") private var playfulExtras = true
 
     var body: some View {
         @Bindable var store = store
@@ -53,6 +54,14 @@ struct ReminderSettingsView: View {
                     Toggle("Check in if I keep snoozing something", isOn: $store.settings.snoozeCheckIn)
                 } footer: {
                     Text("After three snoozes in a row, Today asks gently if the schedule fits. No notification.")
+                }
+
+                Section {
+                    Toggle("Leaf burst and a little buzz when I finish something", isOn: $playfulExtras)
+                } header: {
+                    Text("Little extras")
+                } footer: {
+                    Text("Switch off for a plain tick. Reduce Motion in iOS Settings also turns off the leaves.")
                 }
 
                 Section("Permission") {

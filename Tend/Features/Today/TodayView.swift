@@ -4,6 +4,8 @@ import SwiftUI
 struct TodayView: View {
     @Query(sort: \CareItem.dueDate) private var items: [CareItem]
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @AppStorage("playfulExtras") private var playfulExtras = true
     @Environment(ReminderCenter.self) private var reminders
     @Environment(ReminderSettingsStore.self) private var reminderSettings
     @State private var now = Date.now
@@ -28,10 +30,12 @@ struct TodayView: View {
         let summary = CareSummary(items: items, now: now)
         let freshStart = FreshStart(items: items, now: now)
         let showsFreshStart = freshStart.isWorthOffering
+        let mood = DayMood(items: items, now: now)
+        let startHereID = StartHere.pick(from: items, now: now)?.id
 
         NavigationStack {
             List {
-                TodayHeader(now: now, summary: summary)
+                TodayHeader(now: now, summary: summary, mood: mood)
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
 
@@ -76,9 +80,9 @@ struct TodayView: View {
                 }
 
                 CareSection(title: "Waiting for you", items: sections.overdue, now: now,
-                            completing: completing, onDone: complete, onSnooze: snooze)
+                            completing: completing, startHereID: startHereID, onDone: complete, onSnooze: snooze)
                 CareSection(title: "For today", items: sections.today, now: now,
-                            completing: completing, onDone: complete, onSnooze: snooze)
+                            completing: completing, startHereID: startHereID, onDone: complete, onSnooze: snooze)
                 CareSection(title: "Coming up", items: sections.comingUp, now: now,
                             completing: completing, onDone: complete, onSnooze: snooze)
 
@@ -194,8 +198,9 @@ struct TodayView: View {
         }
         guard completing.insert(item.id).inserted else { return }
         Task {
-            try? await Task.sleep(for: .milliseconds(450))
-            withAnimation {
+            let playful = playfulExtras && !reduceMotion
+            try? await Task.sleep(for: .milliseconds(playful ? 600 : 450))
+            withAnimation(playful ? .spring(duration: 0.45, bounce: 0.25) : .default) {
                 undo = item.markDone(now: .now)
                 firstSuccess = true
                 completing.remove(item.id)
