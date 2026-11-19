@@ -27,7 +27,9 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - **How Tend talks to you**: one sheet (bottom of Today) with every switch above.
 - Made-up sample items load on the first run of a debug build.
 
-Not built yet: app icon (next, using the same sprout), widget.
+- **App icon**: the sprout, in light, dark and tinted versions. Drawn by a script (`tools/make-icon.swift`), so it can be changed and redrawn in seconds.
+
+Not built yet: widget.
 
 ## Run it
 
