@@ -46,6 +46,11 @@ nonisolated struct DistanceSchedule: Codable, Hashable {
         return calendar.date(byAdding: .day, value: days, to: start) ?? start
     }
 
+    /// A reading cannot be lower than the odometer was at the last service.
+    func accepts(readingKm km: Int) -> Bool {
+        km >= lastServiceKm
+    }
+
     mutating func updateReading(km: Int, on date: Date) {
         readingKm = km
         readingDate = date

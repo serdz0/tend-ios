@@ -59,6 +59,15 @@ struct MileageTests {
         #expect(item.status(now: date(2026, 11, 19, hour: 10), calendar: calendar) == .dueToday)
     }
 
+    // MARK: Checking a reading you type
+
+    @Test func aReadingBelowTheLastServiceIsRejected() {
+        let s = schedule()   // last service at 47,000
+        #expect(s.accepts(readingKm: 46_999) == false)
+        #expect(s.accepts(readingKm: 47_000))
+        #expect(s.accepts(readingKm: 62_500))
+    }
+
     // MARK: Marking done and updating the reading
 
     @Test func markingDoneWithAReadingRestartsTheCountFromThatReading() {

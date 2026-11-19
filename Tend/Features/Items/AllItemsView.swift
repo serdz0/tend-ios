@@ -25,8 +25,10 @@ struct AllItemsView: View {
                 } else {
                     Section {
                         ForEach(items.sorted(using: KeyPathComparator(\.title, comparator: .localizedStandard))) { item in
-                            ItemRow(item: item)
-                                .listRowBackground(Theme.card)
+                            NavigationLink(value: item) {
+                                ItemRow(item: item)
+                            }
+                            .listRowBackground(Theme.card)
                         }
                     }
                 }
@@ -34,6 +36,9 @@ struct AllItemsView: View {
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
             .toolbarVisibility(.hidden, for: .navigationBar)
+            .navigationDestination(for: CareItem.self) { item in
+                ItemDetailView(item: item)
+            }
         }
         .sheet(isPresented: $isAdding) {
             ItemFormView()

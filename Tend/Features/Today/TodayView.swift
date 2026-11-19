@@ -7,6 +7,8 @@ struct TodayView: View {
     @State private var now = Date.now
     /// Items whose tick is showing for a moment before they leave the list.
     @State private var completing: Set<UUID> = []
+    /// Set when an item that repeats by distance is marked done: it needs an odometer reading first.
+    @State private var odometerRequest: OdometerRequest?
 
     var body: some View {
         let sections = TodaySections(items: items, now: now)
@@ -40,10 +42,16 @@ struct TodayView: View {
         .onChange(of: scenePhase) {
             if scenePhase == .active { now = .now }
         }
+        .sheet(item: $odometerRequest, content: OdometerSheet.init)
     }
 
     /// Shows the tick for a moment, then marks the item done and lets it leave the list.
+    /// Items that repeat by distance ask for the odometer reading first.
     private func complete(_ item: CareItem) {
+        if item.distance != nil {
+            odometerRequest = OdometerRequest(item: item, purpose: .done)
+            return
+        }
         guard completing.insert(item.id).inserted else { return }
         Task {
             try? await Task.sleep(for: .milliseconds(450))

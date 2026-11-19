@@ -17,6 +17,13 @@ enum SampleData {
             )
         }
 
+        func history(_ item: CareItem, _ kind: CareEventKind, daysAgo: Int, hour: Int = 9) -> CareItem {
+            let day = calendar.date(byAdding: .day, value: -daysAgo, to: today) ?? today
+            let time = calendar.date(bySettingHour: hour, minute: 15, second: 0, of: day) ?? day
+            item.events.append(CareEvent(date: time, kind: kind))
+            return item
+        }
+
         // 61,300 km on the odometer today, last oil change at 47,000, about 12,000 km a year.
         let oil = DistanceSchedule(intervalKm: 15_000, lastServiceKm: 47_000, readingKm: 61_300,
                                    readingDate: today, kmPerYear: 12_000)
@@ -24,11 +31,11 @@ enum SampleData {
         return [
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.stk.taskName,
                      recurrence: Recurrence(count: 2, unit: .year), dueDate: due(in: -3)),
-            plant(.monstera, dueIn: -1),
-            plant(.fiddleLeafFig, dueIn: 0),
-            plant(.basil, dueIn: 0),
-            plant(.peaceLily, dueIn: 4),
-            plant(.snakePlant, dueIn: 9),
+            history(plant(.monstera, dueIn: -1), .done, daysAgo: 8),
+            history(plant(.fiddleLeafFig, dueIn: 0), .done, daysAgo: 7, hour: 18),
+            history(history(plant(.basil, dueIn: 0), .done, daysAgo: 6), .snoozed, daysAgo: 1, hour: 8),
+            history(plant(.peaceLily, dueIn: 4), .done, daysAgo: 3, hour: 20),
+            history(plant(.snakePlant, dueIn: 9), .done, daysAgo: 5),
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.oilService.taskName,
                      schedule: .distance(oil), dueDate: oil.dueDate(calendar: calendar)),
             CareItem(name: "Car", kind: .car, task: CarTaskPreset.insurance.taskName,
