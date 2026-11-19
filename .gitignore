@@ -15,3 +15,4 @@ build-release/
 .claude/settings.local.json
 *.xcresult
 *.mov
+.claude/skills/
