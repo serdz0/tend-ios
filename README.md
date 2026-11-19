@@ -4,7 +4,7 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 
 > Built with Claude Code from my requirements; I specify and review, I do not write the Swift by hand. Started November 2026. Sample data and made-up names only.
 
-## What works now (Steps 1 to 3)
+## What works now (Steps 1 to 3, plus the safety net)
 
 - **Today**: a greeting, one warm sentence about what is waiting, then "Waiting for you" (overdue), "For today" and "Coming up" (next 30 days).
 - Tap the circle to mark an item done. Swipe right to mark done, swipe left to snooze one day.
@@ -14,6 +14,9 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - **Journal**: everything marked done or snoozed, grouped by day.
 - Light and dark mode. Works at the largest text size.
 - **Reminders**: a notification on the due day at 10:30 (changeable per item), with **Done** and **Snooze for a day** buttons. For oil service, Done opens the app to ask for the odometer. Tend asks permission from a friendly card on Today, not at launch. One reminder per item, no repeats.
+- **Undo** for every Done and Snooze: a bar that stays until you tap Undo or close it. No countdown to race.
+- **Fresh start**: when 3 or more plants are overdue, one tap spreads them over the next days, two a day (undoable). Car deadlines are never moved.
+- **Welcome back**: after 3 or more days away, one calm line about what is waiting and one small place to start. No guilt, no day counts.
 - Made-up sample items load on the first run of a debug build.
 
 Not built yet: app icon, widget.

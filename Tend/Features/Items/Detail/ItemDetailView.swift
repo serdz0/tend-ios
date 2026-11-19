@@ -10,6 +10,7 @@ struct ItemDetailView: View {
     @State private var isEditing = false
     @State private var isConfirmingDelete = false
     @State private var odometerRequest: OdometerRequest?
+    @State private var undo: CareUndo?
 
     var body: some View {
         // After a delete the screen is on its way out; don't read from the removed item.
@@ -46,23 +47,40 @@ struct ItemDetailView: View {
                 ItemFormView(editing: item)
             }
             .sheet(item: $odometerRequest, content: OdometerSheet.init)
+            .safeAreaInset(edge: .bottom) {
+                if let undo {
+                    UndoBar(message: undo.message, onUndo: undoLast, onClose: closeUndo)
+                        .transition(.opacity)
+                }
+            }
         }
     }
 
     private func markDone() {
         if item.distance != nil {
-            odometerRequest = OdometerRequest(item: item, purpose: .done)
+            odometerRequest = OdometerRequest(item: item, purpose: .done, onMarkedDone: offerUndo)
         } else {
-            withAnimation {
-                item.markDone()
-            }
+            offerUndo(item.markDone())
         }
     }
 
     private func snooze() {
+        offerUndo(item.snooze())
+    }
+
+    private func offerUndo(_ newUndo: CareUndo) {
+        withAnimation { undo = newUndo }
+    }
+
+    private func undoLast() {
         withAnimation {
-            item.snooze()
+            undo?.apply()
+            undo = nil
         }
+    }
+
+    private func closeUndo() {
+        withAnimation { undo = nil }
     }
 
     private func updateMileage() {

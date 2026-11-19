@@ -4,6 +4,8 @@ import Foundation
 struct OdometerRequest: Identifiable {
     let item: CareItem
     let purpose: OdometerPurpose
+    /// Called after the item is marked done, with the way to take it back.
+    var onMarkedDone: (CareUndo) -> Void = { _ in }
 
     var id: UUID { item.id }
 }

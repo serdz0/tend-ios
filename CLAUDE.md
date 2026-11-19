@@ -14,6 +14,8 @@ Honest dating: started November 2026. Never present it as older. Public repo onl
 1. Skeleton with sample data: DONE. Today screen, SwiftData models, due-date logic.
 2. Add and edit items, item detail, history: DONE. Plant types, car presets, three schedule types (interval, yearly, by km), calendar tab, "My things" grouping, warm copy pass. 107 tests.
 3. Local notifications with Done and Snooze actions: DONE. One reminder per item on the due day at 10:30 by default, no repeats. `ReminderPlanner` (tested) decides what to schedule, `ReminderCenter` talks to the system, `NotificationActionHandler` answers the buttons. Oil service: Done opens the odometer sheet. 118 tests. Debug only: launch with `-testReminder Basil` to get a test reminder in 10 seconds.
+3b. Safety net (ADHD-friendly, based on his research): DONE. `CareUndo` (Done, Snooze and Fresh start can be undone, bar has no timer), `FreshStart` (spreads overdue plants, max 2 a day, cars never moved), `WelcomeBack` (after 3+ days away). 137 tests. Debug only: launch with `-pileUp YES` for a pile of overdue plants, `-lastActive 1700000000` to fake a long absence.
+3c. Next rounds, each committed separately: calm notifications (morning digest by default, quiet days, permission card after first success, "How Tend talks to you" sheet), then playful layer with "Start here" (mood, sprout mascot, springy motion), then icon, then widget. Support tool, not treatment: no diagnostic or efficacy claims, no analytics.
 4. Polish: app icon, empty states, maybe a home-screen widget.
 5. Run on his real iPhone, README screenshots, short screen recording, public repo.
 

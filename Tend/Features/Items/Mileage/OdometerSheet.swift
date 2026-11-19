@@ -70,7 +70,7 @@ struct OdometerSheet: View {
 
     private func save() {
         switch request.purpose {
-        case .done: request.item.markDone(odometerKm: km)
+        case .done: request.onMarkedDone(request.item.markDone(odometerKm: km))
         case .update: request.item.updateMileage(km: km)
         }
         dismiss()

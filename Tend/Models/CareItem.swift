@@ -72,8 +72,13 @@ final class CareItem {
     ///   watered late is not due again the next day.
     /// - A fixed date each year: the same date next year, however early or late it was done.
     /// - By distance: restarts the count from the odometer reading (or the estimate if none is given).
-    func markDone(now: Date = .now, odometerKm: Int? = nil, calendar: Calendar = .current) {
-        events.append(CareEvent(date: now, kind: .done))
+    ///
+    /// Returns a way to take it back.
+    @discardableResult
+    func markDone(now: Date = .now, odometerKm: Int? = nil, calendar: Calendar = .current) -> CareUndo {
+        let event = CareEvent(date: now, kind: .done)
+        let restore = CareUndo.Restore(item: self, dueDate: dueDate, schedule: schedule, event: event)
+        events.append(event)
         let today = calendar.startOfDay(for: now)
 
         switch schedule {
@@ -87,13 +92,19 @@ final class CareItem {
             schedule = .distance(distance)
             dueDate = distance.dueDate(calendar: calendar)
         }
+        return CareUndo(message: "\(title) is done.", restores: [restore])
     }
 
     /// Pushes it back one day: to tomorrow if it is due or overdue, otherwise one day later than planned.
-    func snooze(now: Date = .now, calendar: Calendar = .current) {
-        events.append(CareEvent(date: now, kind: .snoozed))
+    /// Returns a way to take it back.
+    @discardableResult
+    func snooze(now: Date = .now, calendar: Calendar = .current) -> CareUndo {
+        let event = CareEvent(date: now, kind: .snoozed)
+        let restore = CareUndo.Restore(item: self, dueDate: dueDate, schedule: schedule, event: event)
+        events.append(event)
         let base = max(calendar.startOfDay(for: now), calendar.startOfDay(for: dueDate))
         dueDate = calendar.date(byAdding: .day, value: 1, to: base) ?? base
+        return CareUndo(message: "\(title) is snoozed until tomorrow.", restores: [restore])
     }
 
     /// Records a new odometer reading and re-estimates the due date. Does nothing for other schedules.

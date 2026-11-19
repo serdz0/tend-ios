@@ -9,8 +9,11 @@ enum SampleData {
         func due(in days: Int) -> Date {
             calendar.date(byAdding: .day, value: days, to: today) ?? today
         }
-        func plant(_ type: PlantType, name: String? = nil, dueIn days: Int) -> CareItem {
-            CareItem(
+        // Launch with `-pileUp YES` to see a pile of overdue plants (for trying Fresh start).
+        let pileUp = UserDefaults.standard.bool(forKey: "pileUp")
+        func plant(_ type: PlantType, name: String? = nil, dueIn plannedDays: Int) -> CareItem {
+            let days = pileUp ? -(abs(plannedDays) + 2) : plannedDays
+            return CareItem(
                 name: name ?? type.defaultName, kind: .plant, task: "Water",
                 schedule: .interval(Recurrence(count: type.wateringDays ?? 7, unit: .day)),
                 dueDate: due(in: days), plantType: type
