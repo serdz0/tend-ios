@@ -63,5 +63,6 @@ Install and screenshot without the simulator tool: `xcrun simctl install booted 
 
 ## Before publishing
 
-- The first commit in this repo (99ab480) was made with his real email. Rewrite it to the GitHub no-reply address (355532830+serdz0@users.noreply.github.com) before any push. The local git config already uses the no-reply address.
+- Commit emails: DONE. All commits now use the GitHub no-reply address (355532830+serdz0@users.noreply.github.com); history was rewritten on 19 November 2026 and checked (no real email in any commit). A backup of the old history sits outside the repo (`~/Projects/tend-before-rewrite.bundle`); delete it once the repo is public. Never push that bundle.
 - Ask before creating the public GitHub repo. Pick a descriptive repo name (the folder is still called `swiftui-app`).
+- Third-party skill: `.claude/skills/swiftui-pro` is MIT (Paul Hudson) but its licence text is not in the folder. Decision pending: keep it with credit, or leave it out of the repo (it is pinned in `skills-lock.json`).
