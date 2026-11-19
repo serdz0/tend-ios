@@ -9,12 +9,20 @@ struct ItemScheduleSection: View {
         switch draft.style {
         case .interval:
             Section {
-                Stepper(value: $draft.interval.count, in: 1...365) {
-                    RecurrenceText(recurrence: draft.interval)
+                if let watering = draft.seasonalWatering {
+                    Toggle("Adjust for the seasons", isOn: $draft.followsSeasons)
+                    if draft.followsSeasons {
+                        SeasonalWateringRows(watering: watering)
+                    }
                 }
-                Picker("Unit", selection: $draft.interval.unit) {
-                    ForEach(RecurrenceUnit.allCases) { unit in
-                        Text(unit.pluralName).tag(unit)
+                if !draft.usesSeasons {
+                    Stepper(value: $draft.interval.count, in: 1...365) {
+                        RecurrenceText(recurrence: draft.interval)
+                    }
+                    Picker("Unit", selection: $draft.interval.unit) {
+                        ForEach(RecurrenceUnit.allCases) { unit in
+                            Text(unit.pluralName).tag(unit)
+                        }
                     }
                 }
                 DatePicker("Next time", selection: $draft.firstDueDate, displayedComponents: .date)

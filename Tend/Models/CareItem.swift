@@ -15,6 +15,8 @@ final class CareItem {
     var plantType: PlantType?
     /// What time of day the reminder arrives.
     var reminderTime: TimeOfDay = TimeOfDay.defaultReminder
+    /// For plants with a seasonal pattern: water more in summer and less in winter, automatically.
+    var followsSeasons: Bool = false
     @Relationship(deleteRule: .cascade, inverse: \CareEvent.item)
     var events: [CareEvent] = []
 
@@ -25,7 +27,8 @@ final class CareItem {
         schedule: Schedule,
         dueDate: Date,
         plantType: PlantType? = nil,
-        reminderTime: TimeOfDay = .defaultReminder
+        reminderTime: TimeOfDay = .defaultReminder,
+        followsSeasons: Bool = false
     ) {
         self.id = UUID()
         self.name = name
@@ -35,6 +38,7 @@ final class CareItem {
         self.dueDate = dueDate
         self.plantType = plantType
         self.reminderTime = reminderTime
+        self.followsSeasons = followsSeasons
     }
 
     /// An item that repeats every so many days, weeks, months or years.
@@ -48,6 +52,22 @@ final class CareItem {
         case .plant: "\(task) \(name)"
         case .car: task
         }
+    }
+
+    /// The seasonal pattern in use, if this plant follows the seasons.
+    var activeSeasonalWatering: SeasonalWatering? {
+        guard followsSeasons, kind == .plant else { return nil }
+        return plantType?.seasonalWatering
+    }
+
+    /// How often an interval item comes round when done on this date. Seasonal plants use the
+    /// interval for that time of year. Nil for items that repeat by date or distance.
+    func recurrence(on date: Date, calendar: Calendar = .current) -> Recurrence? {
+        guard case .interval(let stored) = schedule else { return nil }
+        if let watering = activeSeasonalWatering {
+            return Recurrence(count: watering.days(on: date, calendar: calendar), unit: .day)
+        }
+        return stored
     }
 
     /// The mileage details, for items that repeat by distance.
@@ -88,7 +108,9 @@ final class CareItem {
         let today = calendar.startOfDay(for: now)
 
         switch schedule {
-        case .interval(let recurrence):
+        case .interval(let stored):
+            let recurrence = self.recurrence(on: today, calendar: calendar) ?? stored
+            schedule = .interval(recurrence)
             dueDate = recurrence.next(after: today, calendar: calendar)
         case .yearly(let month, let day):
             let served = max(today, calendar.startOfDay(for: dueDate))

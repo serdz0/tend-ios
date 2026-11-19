@@ -7,8 +7,12 @@ struct ItemFactsSection: View {
 
     var body: some View {
         Section("Good to know") {
-            LabeledContent("Repeats") {
-                ScheduleText(schedule: item.schedule)
+            if let watering = item.activeSeasonalWatering {
+                SeasonalWateringRows(watering: watering)
+            } else {
+                LabeledContent("Repeats") {
+                    ScheduleText(schedule: item.schedule)
+                }
             }
             if let type = item.plantType {
                 LabeledContent("Type", value: type.displayName)

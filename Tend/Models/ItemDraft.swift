@@ -30,6 +30,8 @@ struct ItemDraft {
     /// The next due date. For a fixed-date task its month and day become the day it repeats on.
     var firstDueDate: Date
     var reminderTime = TimeOfDay.defaultReminder
+    /// Water more in summer and less in winter, for plant types with a seasonal pattern.
+    var followsSeasons = false
     var serviceIntervalKm = 15_000
     var lastServiceKm = 0
     var currentKm = 0
@@ -52,6 +54,7 @@ struct ItemDraft {
         name = item.name
         plantType = item.plantType ?? .other
         reminderTime = item.reminderTime
+        followsSeasons = item.followsSeasons
         firstDueDate = calendar.startOfDay(for: item.dueDate)
         interval = Recurrence(count: 1, unit: .year)
 
@@ -115,13 +118,29 @@ struct ItemDraft {
     }
 
     /// Call after `plantType` changes. Keeps a name you typed yourself.
-    mutating func applyPlantTypeDefaults() {
+    mutating func applyPlantTypeDefaults(now: Date = .now, calendar: Calendar = .current) {
         if isDefaultName(name) {
             name = plantType.defaultName
         }
-        if let days = plantType.wateringDays {
-            interval = Recurrence(count: days, unit: .day)
+        if let seasonal = plantType.seasonalWatering {
+            followsSeasons = true
+            interval = Recurrence(count: seasonal.days(on: now, calendar: calendar), unit: .day)
+        } else {
+            followsSeasons = false
+            if let days = plantType.wateringDays {
+                interval = Recurrence(count: days, unit: .day)
+            }
         }
+    }
+
+    /// The seasonal pattern the form can offer, for a plant type that has one.
+    var seasonalWatering: SeasonalWatering? {
+        kind == .plant ? plantType.seasonalWatering : nil
+    }
+
+    /// True when the interval comes from the seasons rather than the stepper.
+    var usesSeasons: Bool {
+        followsSeasons && seasonalWatering != nil
     }
 
     /// Call after `carPreset` changes.
@@ -182,7 +201,8 @@ struct ItemDraft {
             schedule: schedule,
             dueDate: dueDate(for: schedule, calendar: calendar),
             plantType: kind == .plant ? plantType : nil,
-            reminderTime: reminderTime
+            reminderTime: reminderTime,
+            followsSeasons: usesSeasons
         )
     }
 
@@ -195,11 +215,15 @@ struct ItemDraft {
         item.dueDate = dueDate(for: schedule, calendar: calendar)
         item.plantType = kind == .plant ? plantType : nil
         item.reminderTime = reminderTime
+        item.followsSeasons = usesSeasons
     }
 
     private func schedule(now: Date, calendar: Calendar) -> Schedule {
         switch style {
         case .interval:
+            if usesSeasons, let seasonal = seasonalWatering {
+                return .interval(Recurrence(count: seasonal.days(on: now, calendar: calendar), unit: .day))
+            }
             return .interval(interval)
         case .yearly:
             let parts = calendar.dateComponents([.month, .day], from: firstDueDate)

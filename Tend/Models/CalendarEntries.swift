@@ -64,8 +64,8 @@ struct CalendarEntries {
     /// The day after `date` that the item would come round again.
     private static func next(after date: Date, for item: CareItem, calendar: Calendar) -> Date {
         switch item.schedule {
-        case .interval(let recurrence):
-            calendar.startOfDay(for: recurrence.next(after: date, calendar: calendar))
+        case .interval(let stored):
+            calendar.startOfDay(for: (item.recurrence(on: date, calendar: calendar) ?? stored).next(after: date, calendar: calendar))
         case .yearly(let month, let day):
             Schedule.nextOccurrence(month: month, day: day, after: date, calendar: calendar)
         case .distance(let distance):

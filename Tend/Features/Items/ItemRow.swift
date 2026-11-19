@@ -37,7 +37,7 @@ struct ItemRow: View {
     private var titleAndSchedule: some View {
         VStack(alignment: .leading) {
             Text(item.title)
-            ScheduleText(schedule: item.schedule)
+            ScheduleLine(item: item)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }

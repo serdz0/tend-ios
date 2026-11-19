@@ -71,6 +71,16 @@ nonisolated enum PlantType: String, Codable, CaseIterable, Identifiable {
         }
     }
 
+    /// Watering that changes with the season, for plants where care guides agree it matters a lot.
+    var seasonalWatering: SeasonalWatering? {
+        switch self {
+        case .dipladenia: SeasonalWatering(growing: 4, shoulder: 7, rest: 14)
+        case .dracaena, .strelitzia: SeasonalWatering(growing: 7, shoulder: 10, rest: 14)
+        case .zzPlant: SeasonalWatering(growing: 14, shoulder: 18, rest: 25)
+        default: nil
+        }
+    }
+
     /// A short tip for plants whose need changes a lot with the seasons. Most plants have none.
     var seasonTip: String? {
         switch self {
