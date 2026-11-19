@@ -5,6 +5,7 @@ import SwiftUI
 struct ItemFormView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("firstSuccess") private var firstSuccess = false
     @State private var draft: ItemDraft
     private let editing: CareItem?
 
@@ -62,6 +63,7 @@ struct ItemFormView: View {
             draft.apply(to: editing)
         } else {
             modelContext.insert(draft.makeItem())
+            firstSuccess = true
         }
         dismiss()
     }
@@ -72,5 +74,6 @@ struct ItemFormView: View {
     ItemFormView()
         .modelContainer(SampleData.previewContainer())
         .environment(ReminderCenter())
+        .environment(ReminderSettingsStore())
 }
 #endif

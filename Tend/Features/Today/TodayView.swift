@@ -5,6 +5,7 @@ struct TodayView: View {
     @Query(sort: \CareItem.dueDate) private var items: [CareItem]
     @Environment(\.scenePhase) private var scenePhase
     @Environment(ReminderCenter.self) private var reminders
+    @Environment(ReminderSettingsStore.self) private var reminderSettings
     @State private var now = Date.now
     /// Items whose tick is showing for a moment before they leave the list.
     @State private var completing: Set<UUID> = []
@@ -16,6 +17,11 @@ struct TodayView: View {
     @State private var catchUpDismissed = false
     /// When the app was last in use, as seconds since 1970. Zero means never.
     @AppStorage("lastActive") private var lastActive: Double = 0
+    /// Becomes true after the first thing is added or finished. Reminders are only offered after that.
+    @AppStorage("firstSuccess") private var firstSuccess = false
+    @State private var snoozeCheck: CareItem?
+    @State private var editing: CareItem?
+    @State private var showsReminderSettings = false
 
     var body: some View {
         let sections = TodaySections(items: items, now: now)
@@ -29,6 +35,18 @@ struct TodayView: View {
                     .listRowBackground(Color.clear)
                     .listRowSeparator(.hidden)
 
+                if let snoozeCheck {
+                    Section {
+                        SnoozeCheckCard(
+                            item: snoozeCheck,
+                            onChange: { changeSchedule(of: snoozeCheck) },
+                            onDismiss: dismissSnoozeCheck,
+                            onNeverAsk: stopSnoozeCheckIns
+                        )
+                    }
+                    .listRowBackground(Theme.card)
+                }
+
                 if !catchUpDismissed, welcome != nil || showsFreshStart {
                     Section {
                         CatchUpCard(
@@ -41,7 +59,7 @@ struct TodayView: View {
                     .listRowBackground(Theme.card)
                 }
 
-                if reminders.status == .notDetermined {
+                if reminders.status == .notDetermined, firstSuccess {
                     Section {
                         ReminderPromptCard()
                     }
@@ -63,10 +81,22 @@ struct TodayView: View {
                             completing: completing, onDone: complete, onSnooze: snooze)
                 CareSection(title: "Coming up", items: sections.comingUp, now: now,
                             completing: completing, onDone: complete, onSnooze: snooze)
+
+                Section {
+                    ReminderSettingsRow(settings: reminderSettings.settings, now: now, onOpen: openReminderSettings)
+                }
+                .listRowBackground(Theme.card)
             }
             .scrollContentBackground(.hidden)
             .background(Theme.paper)
             .toolbarVisibility(.hidden, for: .navigationBar)
+            // Inside the stack, so the list scrolls clear of the bar instead of hiding behind it.
+            .safeAreaInset(edge: .bottom) {
+                if let undo {
+                    UndoBar(message: undo.message, onUndo: undoLast, onClose: closeUndo)
+                        .transition(.opacity)
+                }
+            }
         }
         .onChange(of: scenePhase) {
             switch scenePhase {
@@ -82,13 +112,9 @@ struct TodayView: View {
         .onAppear(perform: checkWelcome)
         // Adding or removing things makes an old undo unsafe, so it goes away.
         .onChange(of: items.count) { undo = nil }
-        .safeAreaInset(edge: .bottom) {
-            if let undo {
-                UndoBar(message: undo.message, onUndo: undoLast, onClose: closeUndo)
-                    .transition(.opacity)
-            }
-        }
         .sheet(item: $odometerRequest, content: OdometerSheet.init)
+        .sheet(item: $editing) { ItemFormView(editing: $0) }
+        .sheet(isPresented: $showsReminderSettings) { ReminderSettingsView() }
         // A reminder's Done button for a task that repeats by distance lands here to ask for the odometer.
         .task(id: reminders.itemToFinish) {
             openOdometerForReminder()
@@ -125,6 +151,7 @@ struct TodayView: View {
     }
 
     private func offerUndo(_ newUndo: CareUndo) {
+        firstSuccess = true
         withAnimation { undo = newUndo }
     }
 
@@ -132,7 +159,26 @@ struct TodayView: View {
         withAnimation {
             undo?.apply()
             undo = nil
+            snoozeCheck = nil
         }
+    }
+
+    private func openReminderSettings() {
+        showsReminderSettings = true
+    }
+
+    private func changeSchedule(of item: CareItem) {
+        snoozeCheck = nil
+        editing = item
+    }
+
+    private func dismissSnoozeCheck() {
+        withAnimation { snoozeCheck = nil }
+    }
+
+    private func stopSnoozeCheckIns() {
+        reminderSettings.settings.snoozeCheckIn = false
+        dismissSnoozeCheck()
     }
 
     private func closeUndo() {
@@ -151,6 +197,7 @@ struct TodayView: View {
             try? await Task.sleep(for: .milliseconds(450))
             withAnimation {
                 undo = item.markDone(now: .now)
+                firstSuccess = true
                 completing.remove(item.id)
             }
         }
@@ -159,6 +206,9 @@ struct TodayView: View {
     private func snooze(_ item: CareItem) {
         withAnimation {
             undo = item.snooze(now: .now)
+            if reminderSettings.settings.snoozeCheckIn, item.needsSnoozeCheckIn {
+                snoozeCheck = item
+            }
         }
     }
 }
@@ -168,5 +218,6 @@ struct TodayView: View {
     TodayView()
         .modelContainer(SampleData.previewContainer())
         .environment(ReminderCenter())
+        .environment(ReminderSettingsStore())
 }
 #endif

@@ -8,7 +8,7 @@ struct ReminderPromptCard: View {
         VStack(alignment: .leading, spacing: Theme.Spacing.s) {
             Label("Want a gentle nudge?", systemImage: "bell")
                 .font(.headline)
-            Text("Tend can remind you when something is due, so you never have to remember. Just the things you've added, nothing else.")
+            Text("Tend can send one calm note each morning with what is waiting, so you don't have to hold it all in your head. You can change or stop it any time.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
             Button("Turn on reminders", action: turnOn)

@@ -4,13 +4,14 @@ import SwiftUI
 struct RootView: View {
     @Query private var items: [CareItem]
     @Environment(ReminderCenter.self) private var reminders
+    @Environment(ReminderSettingsStore.self) private var reminderSettings
     @Environment(\.scenePhase) private var scenePhase
     @State private var selection: AppTab = .today
     @State private var now = Date.now
 
     var body: some View {
         let sync = ReminderSync(
-            plans: ReminderPlanner.plans(for: items, now: now),
+            plans: ReminderPlanner.plans(for: items, settings: reminderSettings.settings, now: now),
             status: reminders.status
         )
 
@@ -47,6 +48,12 @@ struct RootView: View {
         .onChange(of: reminders.itemToFinish) {
             if reminders.itemToFinish != nil { selection = .today }
         }
+        .onChange(of: reminders.openToday) {
+            if reminders.openToday {
+                selection = .today
+                reminders.openToday = false
+            }
+        }
     }
 
     #if DEBUG
@@ -64,5 +71,6 @@ struct RootView: View {
     RootView()
         .modelContainer(SampleData.previewContainer())
         .environment(ReminderCenter())
+        .environment(ReminderSettingsStore())
 }
 #endif

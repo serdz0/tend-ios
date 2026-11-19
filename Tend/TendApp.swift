@@ -6,6 +6,7 @@ import UserNotifications
 struct TendApp: App {
     private let container: ModelContainer
     private let reminders = ReminderCenter()
+    private let reminderSettings = ReminderSettingsStore()
     private let actionHandler: NotificationActionHandler
 
     init() {
@@ -21,7 +22,7 @@ struct TendApp: App {
         self.container = container
 
         // The system keeps only a weak reference to its delegate, so the app holds on to it.
-        let handler = NotificationActionHandler(container: container, reminders: reminders)
+        let handler = NotificationActionHandler(container: container, reminders: reminders, settings: reminderSettings)
         actionHandler = handler
         reminders.registerCategories()
         UNUserNotificationCenter.current().delegate = handler
@@ -33,5 +34,6 @@ struct TendApp: App {
         }
         .modelContainer(container)
         .environment(reminders)
+        .environment(reminderSettings)
     }
 }

@@ -65,5 +65,6 @@ struct AllItemsView: View {
     AllItemsView()
         .modelContainer(SampleData.previewContainer())
         .environment(ReminderCenter())
+        .environment(ReminderSettingsStore())
 }
 #endif

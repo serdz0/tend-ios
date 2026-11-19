@@ -104,7 +104,18 @@ final class CareItem {
         events.append(event)
         let base = max(calendar.startOfDay(for: now), calendar.startOfDay(for: dueDate))
         dueDate = calendar.date(byAdding: .day, value: 1, to: base) ?? base
-        return CareUndo(message: "\(title) is snoozed until tomorrow.", restores: [restore])
+        return CareUndo(message: "\(title) is snoozed for a day.", restores: [restore])
+    }
+
+    /// How many times in a row it has been snoozed, counting back from the latest entry. Done starts it again.
+    var snoozeStreak: Int {
+        events.sorted { $0.date > $1.date }.prefix { $0.kind == .snoozed }.count
+    }
+
+    /// True after the third snooze in a row, and again after the sixth: a good moment to ask if the schedule fits.
+    var needsSnoozeCheckIn: Bool {
+        let streak = snoozeStreak
+        return streak > 0 && streak % 3 == 0
     }
 
     /// Records a new odometer reading and re-estimates the due date. Does nothing for other schedules.

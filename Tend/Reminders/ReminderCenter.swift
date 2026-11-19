@@ -25,6 +25,8 @@ final class ReminderCenter {
     /// Set when Done was tapped on a reminder for a task that repeats by distance.
     /// The Today screen opens the odometer sheet for it and clears this.
     var itemToFinish: UUID?
+    /// Set when a notification is tapped, so the app lands on Today. Cleared once it has.
+    var openToday = false
 
     private let center = UNUserNotificationCenter.current()
 
@@ -68,8 +70,11 @@ final class ReminderCenter {
             content.title = plan.title
             content.body = plan.body
             content.sound = .default
-            content.categoryIdentifier = plan.needsOdometer ? Self.distanceCategory : Self.plainCategory
-            content.userInfo = ["itemID": plan.itemID.uuidString]
+            // The morning note has no buttons: it only opens Today.
+            if let itemID = plan.itemID {
+                content.categoryIdentifier = plan.needsOdometer ? Self.distanceCategory : Self.plainCategory
+                content.userInfo = ["itemID": itemID.uuidString]
+            }
 
             let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: plan.fireDate)
             let trigger = UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)

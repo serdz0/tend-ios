@@ -11,6 +11,7 @@ struct ItemDetailView: View {
     @State private var isConfirmingDelete = false
     @State private var odometerRequest: OdometerRequest?
     @State private var undo: CareUndo?
+    @AppStorage("firstSuccess") private var firstSuccess = false
 
     var body: some View {
         // After a delete the screen is on its way out; don't read from the removed item.
@@ -69,6 +70,7 @@ struct ItemDetailView: View {
     }
 
     private func offerUndo(_ newUndo: CareUndo) {
+        firstSuccess = true
         withAnimation { undo = newUndo }
     }
 

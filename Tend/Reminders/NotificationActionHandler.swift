@@ -6,10 +6,12 @@ import UserNotifications
 final class NotificationActionHandler: NSObject, UNUserNotificationCenterDelegate {
     private let container: ModelContainer
     private let reminders: ReminderCenter
+    private let settings: ReminderSettingsStore
 
-    init(container: ModelContainer, reminders: ReminderCenter) {
+    init(container: ModelContainer, reminders: ReminderCenter, settings: ReminderSettingsStore) {
         self.container = container
         self.reminders = reminders
+        self.settings = settings
     }
 
     func userNotificationCenter(
@@ -23,6 +25,11 @@ final class NotificationActionHandler: NSObject, UNUserNotificationCenterDelegat
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse
     ) async {
+        // Tapping the notification itself (the morning note or a reminder) lands on Today.
+        if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            reminders.openToday = true
+            return
+        }
         guard let text = response.notification.request.content.userInfo["itemID"] as? String,
               let itemID = UUID(uuidString: text) else { return }
         await handle(action: response.actionIdentifier, itemID: itemID)
@@ -47,6 +54,6 @@ final class NotificationActionHandler: NSObject, UNUserNotificationCenterDelegat
 
         await reminders.refreshStatus()
         let items = (try? context.fetch(FetchDescriptor<CareItem>())) ?? []
-        await reminders.apply(ReminderPlanner.plans(for: items))
+        await reminders.apply(ReminderPlanner.plans(for: items, settings: settings.settings))
     }
 }

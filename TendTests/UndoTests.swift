@@ -66,6 +66,6 @@ struct UndoTests {
     @Test func messagesNameTheItem() {
         let basil = plant(dueInDays: 0)
         #expect(basil.markDone(now: now, calendar: calendar).message == "Water Basil is done.")
-        #expect(basil.snooze(now: now, calendar: calendar).message == "Water Basil is snoozed until tomorrow.")
+        #expect(basil.snooze(now: now, calendar: calendar).message == "Water Basil is snoozed for a day.")
     }
 }

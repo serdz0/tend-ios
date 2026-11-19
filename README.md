@@ -17,6 +17,11 @@ A small iPhone app that reminds me when to water the plants and when the car nee
 - **Undo** for every Done and Snooze: a bar that stays until you tap Undo or close it. No countdown to race.
 - **Fresh start**: when 3 or more plants are overdue, one tap spreads them over the next days, two a day (undoable). Car deadlines are never moved.
 - **Welcome back**: after 3 or more days away, one calm line about what is waiting and one small place to start. No guilt, no day counts.
+- **Calm reminders**: by default one note each morning (10:30, changeable) listing what is waiting, with wording that changes day to day. It only looks 3 days ahead, so if you stop opening Tend it goes quiet by itself. You can switch to a note for each thing instead.
+- **Quiet days**: pause reminders for the rest of today, 3 days or a week.
+- Reminder permission is asked only after you add or finish your first thing, from a card on Today.
+- A gentle check-in after the same thing is snoozed three times in a row ("Change how often", "Not now", "Don't ask again").
+- **How Tend talks to you**: one sheet (bottom of Today) with every switch above.
 - Made-up sample items load on the first run of a debug build.
 
 Not built yet: app icon, widget.
